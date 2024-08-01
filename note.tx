@@ -1,0 +1,25 @@
+header {
+  nav {
+    display: flexbox;
+    a {
+      margin-right: 10px;
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      box-shadow: var(--lbs) 0.1px 0.3px 0.9px;
+      font-size: small;
+      font-weight: 600;
+      color: light-dark(var(--dc), var(--lc));
+    }
+    a:hover {
+      background-color: light-dark(var(--la), var(--da));
+      color: var(--lc);
+    }
+  }
+
+  @media (max-width: 270px) {
+    nav {
+      display: none;
+    }
+  }
+}
