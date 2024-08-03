@@ -11,6 +11,7 @@ export interface AttrsPost {
   ogimage?: string;
   ogurl?: string;
   ogtype?: string;
+  ogtitle?: string;
 }
 export interface MarkOpts extends AttrsPost {
   html: string;
@@ -36,6 +37,7 @@ export function mark(filePath: string): MarkOpts {
     ogimage: data.ogimage ?? "",
     ogtype: data.ogtype ?? "",
     ogurl: data.ogurl ?? "",
+    ogtitle: data.ogtitle ?? "",
     html: html,
   };
 }

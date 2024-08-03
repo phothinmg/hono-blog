@@ -16,6 +16,17 @@ export function readFile(file: string): string {
   }
 }
 /**
+ * Calculates the estimated reading time of a given text.
+ *
+ * @param {string} text - The text to calculate the reading time for.
+ * @return {number} The estimated reading time in minutes.
+ */
+export function readingTime(text: string): number {
+  const wpm = 225;
+  const words = text.split(/\s+/).length;
+  return Math.ceil(words / wpm);
+}
+/**
  * Returns the filename from the given file path.
  *
  * @param filePath - The path of the file.
