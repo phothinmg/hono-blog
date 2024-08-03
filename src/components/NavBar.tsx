@@ -1,5 +1,4 @@
 import { type FC, memo, html } from "../deps/hono.ts";
-
 export const NavBar: FC = memo(() => {
   return (
     <nav class="navigation" id="navigation">
@@ -66,7 +65,7 @@ export const NavBar: FC = memo(() => {
           button.innerText = currentCta;
           button.addEventListener("click", () => {
             const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
-            const newCta = newTheme === "dark" ? "Light Theme" : "Dark Theme";
+            const newCta = newTheme === "dark" ? "Light" : "Dark";
             button.innerText = newCta;
             button.setAttribute("aria-label", newCta);
             document.querySelector("html").setAttribute("data-theme", newTheme);

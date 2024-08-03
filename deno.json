@@ -6,14 +6,11 @@
   },
   "compilerOptions": {
     "jsx": "precompile",
-    "jsxImportSource": "jsr:@hono/hono@^4.5.3/jsx"
+    "jsxImportSource": "jsr:@hono/hono@^4.5.3/jsx",
+    "lib": ["deno.ns", "dom", "dom.iterable", "dom.asynciterable"]
   },
   "imports": {
     "@ptm/hono-image": "jsr:@ptm/hono-image@^0.1.1",
-    "@ptm/mm-mark": "jsr:@ptm/mm-mark@^0.2.9",
-    "@std/front-matter": "jsr:@std/front-matter@^1.0.0",
-    "@std/path": "jsr:@std/path@^1.0.2",
-    "bagancss": "npm:bagancss@^0.0.11",
-    "glob": "npm:glob@^11.0.0"
+    "@std/front-matter": "jsr:@std/front-matter@^1.0.0"
   }
 }

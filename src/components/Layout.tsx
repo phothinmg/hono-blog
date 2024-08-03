@@ -1,9 +1,9 @@
-import { type FC, memo, type PropsWithChildren } from "../deps/hono.ts";
-import { bundled_css } from "../bundlecss/mod.ts";
-import type { BlogConfig } from "../config/mod.ts";
+import { type FC, memo, type PropsWithChildren, html } from "../deps.ts";
+import { bundled_css } from "../bundlecss.ts";
+import type { BlogConfig } from "../configuration.ts";
 
 export interface LayoutProps extends PropsWithChildren {
-  opts: BlogConfig;
+  opts?: BlogConfig;
   seoTitle?: string;
   pageDes?: string;
   pageAuthor?: string;
@@ -25,16 +25,18 @@ export const Layout: FC<LayoutProps> = memo(
     ogUrl,
     children,
   }) => {
-    const title = seoTitle ? opts.name + " " + "|" + " " + seoTitle : opts.name;
-    const kw = opts.meta?.keywords ?? [];
-    const gen = opts.meta?.generator ? "Hono" : "";
-    const des = pageDes ? pageDes : opts.meta?.description;
-    const author = pageAuthor ? pageAuthor : opts.meta?.author;
-    const cs = opts.meta?.colorScheme ?? "normal";
-    const ogtitle = ogTitle ?? opts.openGraph?.ogTitle;
-    const ogtype = ogType ?? opts.openGraph?.ogType;
-    const ogimage = ogImage ?? opts.openGraph?.ogImage;
-    const ogurl = ogUrl ?? opts.openGraph?.ogUrl;
+    const title = seoTitle
+      ? opts?.name + " " + "|" + " " + seoTitle
+      : opts?.name;
+    const kw = opts?.meta?.keywords ?? [];
+    const gen = opts?.meta?.generator ? "Hono" : "";
+    const des = pageDes ? pageDes : opts?.meta?.description;
+    const author = pageAuthor ? pageAuthor : opts?.meta?.author;
+    const cs = opts?.meta?.colorScheme ?? "normal";
+    const ogtitle = ogTitle ?? opts?.openGraph?.ogTitle;
+    const ogtype = ogType ?? opts?.openGraph?.ogType;
+    const ogimage = ogImage ?? opts?.openGraph?.ogImage;
+    const ogurl = ogUrl ?? opts?.openGraph?.ogUrl;
     return (
       <html prefix="og: https://ogp.me/ns#" lang="en">
         <head>
@@ -54,7 +56,7 @@ export const Layout: FC<LayoutProps> = memo(
           <meta property="og:url" content={ogurl} />
           <link
             rel="shortcut icon"
-            href={opts.meta?.favicon}
+            href={opts?.meta?.favicon}
             type="image/x-icon"
           />
           <title>{title}</title>
@@ -62,6 +64,7 @@ export const Layout: FC<LayoutProps> = memo(
         </head>
         <body>
           <main>{children}</main>
+          {html`<script src="https://cdn.jsdelivr.net/gh/phothinmg/master-repo@main/theme-switch.js"></script>`}
         </body>
       </html>
     );

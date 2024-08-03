@@ -1,0 +1,11 @@
+.nav-link {
+  text-decoration: none;
+  color: var(--cfg);
+}
+
+.tb {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+

@@ -1,5 +1,5 @@
-import { transformContent, type LTR } from "../deps/bagancss.ts";
-import { readFile } from "../utils/mod.ts";
+import { transformContent, type LTR } from "./deps.ts";
+import { readFile } from "./utils.ts";
 
 const bundlecss = (files: string[]): string => {
   const content: string[] = files.map((file) => readFile(file));

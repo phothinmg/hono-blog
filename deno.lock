@@ -5,6 +5,7 @@
       "jsr:@hono/hono@^4.4.7": "jsr:@hono/hono@4.5.3",
       "jsr:@hono/hono@^4.5.3": "jsr:@hono/hono@4.5.3",
       "jsr:@ptm/hono-image@^0.1.1": "jsr:@ptm/hono-image@0.1.1",
+      "jsr:@ptm/mm-mark@^0.2.11": "jsr:@ptm/mm-mark@0.2.11",
       "jsr:@ptm/mm-mark@^0.2.8": "jsr:@ptm/mm-mark@0.2.8",
       "jsr:@ptm/mm-mark@^0.2.9": "jsr:@ptm/mm-mark@0.2.9",
       "jsr:@std/assert@^0.226.0": "jsr:@std/assert@0.226.0",
@@ -20,6 +21,7 @@
       "jsr:@std/url@^0.224.1": "jsr:@std/url@0.224.1",
       "jsr:@std/yaml@^1.0.0": "jsr:@std/yaml@1.0.0",
       "npm:@imagemagick/magick-wasm@0.0.29": "npm:@imagemagick/magick-wasm@0.0.29",
+      "npm:@types/jsdom": "npm:@types/jsdom@21.1.7",
       "npm:@types/node": "npm:@types/node@18.16.19",
       "npm:bagancss@^0.0.11": "npm:bagancss@0.0.11",
       "npm:bamarmark@^0.0.1": "npm:bamarmark@0.0.1",
@@ -46,6 +48,13 @@
           "jsr:@std/encoding@^0.224.3",
           "jsr:@std/path@^0.225.2",
           "npm:@imagemagick/magick-wasm@0.0.29"
+        ]
+      },
+      "@ptm/mm-mark@0.2.11": {
+        "integrity": "169efffcaa1659c6b240c32504033ec84783e32553f5127117c63f79bf6e0499",
+        "dependencies": [
+          "npm:js-yaml@^4.1.0",
+          "npm:showdown@^2.1.0"
         ]
       },
       "@ptm/mm-mark@0.2.8": {
@@ -152,12 +161,24 @@
         "integrity": "sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==",
         "dependencies": {}
       },
+      "@types/jsdom@21.1.7": {
+        "integrity": "sha512-yOriVnggzrnQ3a9OKOCxaVuSug3w3/SbOj5i7VwXWZEyUNl3bLF9V3MfxGbZKuwqJOQyRfqXyROBB1CoZLFWzA==",
+        "dependencies": {
+          "@types/node": "@types/node@18.16.19",
+          "@types/tough-cookie": "@types/tough-cookie@4.0.5",
+          "parse5": "parse5@7.1.2"
+        }
+      },
       "@types/node@18.16.19": {
         "integrity": "sha512-IXl7o+R9iti9eBW4Wg2hx1xQDig183jj7YLn8F7udNceyfkbn1ZxmzZXuak20gR40D7pIkIY1kYGx5VIGbaHKA==",
         "dependencies": {}
       },
       "@types/showdown@2.0.6": {
         "integrity": "sha512-pTvD/0CIeqe4x23+YJWlX2gArHa8G0J0Oh6GKaVXV7TAeickpkkZiNOgFcFcmLQ5lB/K0qBJL1FtRYltBfbGCQ==",
+        "dependencies": {}
+      },
+      "@types/tough-cookie@4.0.5": {
+        "integrity": "sha512-/Ad8+nIOV7Rl++6f1BdKxFSMgmoqEoYbHRpPcx3JEfv8VRsQe9Z4mCXeJBzxs7mbHY/XOZZuXlRNfhpVPbs6ZA==",
         "dependencies": {}
       },
       "agent-base@7.1.1": {

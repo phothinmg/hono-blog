@@ -1,5 +1,5 @@
 /**
- * Configuration for Yamanya Blog Template
+ * Configuration for Hono Blog Template
  */
 export interface BlogConfig {
   /**
