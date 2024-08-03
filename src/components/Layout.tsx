@@ -59,6 +59,7 @@ export const Layout: FC<LayoutProps> = memo(
             href={opts?.meta?.favicon}
             type="image/x-icon"
           />
+           <script src="https://kit.fontawesome.com/50c925d5df.js" crossorigin="anonymous"></script>
           <title>{title}</title>
           <style>{bundled_css}</style>
         </head>

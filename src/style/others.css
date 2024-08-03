@@ -9,3 +9,32 @@
   background-color: transparent;
 }
 
+.post-head {
+  padding: 5px;
+  text-align: center;
+  border-bottom: 0.5px solid var(--cmed);
+}
+.post-head > .head-small {
+  font-style: italic;
+  font-weight: 600;
+  margin-right: 18px;
+}
+.badge {
+  background-color: var(--cfg);
+  color: var(--cbg);
+  padding: 4px 8px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: x-small;
+}
+
+.post-body{
+  padding: 5px;
+}
+
+.post-body > p{
+  text-align: justify;
+  text-indent: 36px;
+}
+
+
