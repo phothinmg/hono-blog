@@ -17,7 +17,7 @@
 .post-head > .head-small {
   font-style: italic;
   font-weight: 600;
-  margin-right: 18px;
+  margin-right: 36px;
 }
 .badge {
   background-color: var(--cfg);
@@ -41,4 +41,10 @@
   width: 100%;
   height: 100px;
   border-radius: 10px;
+}
+
+.head-small {
+  font-style: italic;
+  font-weight: 600;
+  margin-right: 18px;
 }

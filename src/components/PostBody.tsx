@@ -20,7 +20,7 @@ export const PostBody: FC<{ filePath: string }> = memo(({ filePath }) => {
         <div class="post-head">
           <h2>{opts.title}</h2>
           <small class="head-small">{opts.date}</small>
-          <small class="head-small">{`${rt}  minutes`}</small>
+          <small class="head-small">{`Reading Time: ${rt}  minutes`}</small>
           <br />
           {opts.tags?.map((i) => {
             `<small class="badge">${i}</small>`;

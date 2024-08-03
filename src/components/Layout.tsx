@@ -59,13 +59,16 @@ export const Layout: FC<LayoutProps> = memo(
             href={opts?.meta?.favicon}
             type="image/x-icon"
           />
-          <script src="https://kit.fontawesome.com/50c925d5df.js" crossorigin="anonymous"></script>
+          <script
+            src="https://kit.fontawesome.com/50c925d5df.js"
+            crossorigin="anonymous"
+          ></script>
           <title>{title}</title>
           <style>{bundled_css}</style>
         </head>
         <body>
           <main>{children}</main>
-          {html`<script src="https://cdn.jsdelivr.net/gh/phothinmg/master-repo@main/theme-switch.js"></script>`}
+          {html`<script src="https://cdn.jsdelivr.net/gh/phothinmg/master-repo@main/theme-switch.min.js"></script>`}
         </body>
       </html>
     );
