@@ -37,19 +37,19 @@ export const getMdFiles = (
       const fn = title.toLowerCase().split(" ").join("-");
       const route = {
         path: `/${type}s/${fn}`,
-        fileLoc: `./${filePath}`,
+        fileLoc: filePath,
         linkTitle: title,
       };
       const post_route = {
         path: `/${type}s/${fn}`,
-        fileLoc: `./${filePath}`,
+        fileLoc: filePath,
         linkTitle: title,
         birthtime: Deno.statSync(filePath).birthtime,
         f_name: fn,
       };
 
       if (type === "index") {
-        indexroute.push({ path: "/", fileLoc: `.${filePath}` });
+        indexroute.push({ path: "/", fileLoc:  filePath });
       } else if (type === "post") {
         postsroute.push(post_route);
       } else if (type === "page") {
@@ -93,15 +93,15 @@ export const getImgFiles = (
       const filename = getFilename(filePath);
       imgIndexRoute.push({
         path: `/${filename}`,
-        fileLoc: `./${filePath}`,
+        fileLoc:  filePath,
       });
       imgPostRoute.push({
         path: `/posts/${filename}`,
-        fileLoc: `./${filePath}`,
+        fileLoc:  filePath,
       });
       imgPageRoute.push({
         path: `/pages/${filename}`,
-        fileLoc: `./${filePath}`,
+        fileLoc:  filePath,
       });
     } catch (error) {
       console.log(`Error processing image file ${filePath}:`, error);

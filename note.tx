@@ -118,3 +118,18 @@ export const PostCard: FC<{ baseDir?: HonoBlogOptions["baseDir"] }> = memo(({ ba
     </div>
   );
 });
+
+<nav>
+  <ul>
+    <li>Brand</li>
+    <li class="float-right tb" type="button" data-theme-toggle></li>
+    <li><a href="#">Item </a></li>
+    <li><a href="#">Menu ▾</a>
+      <ul>
+        <li><a href="#">Menu 1</a></li>
+        <li><a href="#">Menu 2</a></li>
+      </ul>
+    </li>
+    <li class="float-right">Collapse</li>
+  </ul>
+</nav>

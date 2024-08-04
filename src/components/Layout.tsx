@@ -1,5 +1,5 @@
 import { type FC, memo, type PropsWithChildren, html } from "../deps.ts";
-import { bundled_css } from "../bundlecss.ts";
+//import { bundled_css } from "../bundlecss.ts";
 import type { HonoBlogOptions } from "../configuration.ts";
 import { NavBar } from "./NavBar.tsx";
 
@@ -64,8 +64,9 @@ export const Layout: FC<LayoutProps> = memo(
             src="https://kit.fontawesome.com/50c925d5df.js"
             crossorigin="anonymous"
           ></script>
+          <link rel="stylesheet" href="https://classless.de/classless.css"></link>
+          <link rel="stylesheet" href="https://classless.de/addons/themes.css" />
           <title>{title}</title>
-          <style>{bundled_css}</style>
         </head>
         <body>
           <NavBar baseUrl={options?.baseDir} ignore={options?.ignore} />
