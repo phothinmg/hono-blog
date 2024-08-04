@@ -8,9 +8,5 @@
     "jsx": "precompile",
     "jsxImportSource": "jsr:@hono/hono@^4.5.3/jsx",
     "lib": ["deno.ns", "dom", "dom.iterable", "dom.asynciterable"]
-  },
-  "imports": {
-    "@ptm/hono-image": "jsr:@ptm/hono-image@^0.1.1",
-    "@std/front-matter": "jsr:@std/front-matter@^1.0.0"
   }
 }

@@ -18,7 +18,7 @@ export interface MarkOpts extends AttrsPost {
 }
 
 export function mark(filePath: string): MarkOpts {
-  const tx: string = readFile(filePath);
+  const tx: string = Deno.readTextFileSync(filePath);
   const c = Mmmark.converter<AttrsPost>(tx);
   const data: AttrsPost = c.data;
   const html: string = c.html;

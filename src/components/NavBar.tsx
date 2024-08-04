@@ -1,8 +1,8 @@
 import { type FC, memo } from "../deps.ts";
 import { getMdFiles } from "../routes.ts";
-import type { BlogConfig } from "../configuration.ts";
+import type { HonoBlogOptions } from "../configuration.ts";
 
-export const NavBar: FC<{ baseUrl?: BlogConfig["baseURL"]; ignore?: string[] }> =
+export const NavBar: FC<{ baseUrl?: HonoBlogOptions["baseDir"]; ignore?: string[] }> =
   memo(({ baseUrl = "app", ignore = [] }) => {
     const pr = getMdFiles(baseUrl, ignore).pagesroute;
     return (

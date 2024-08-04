@@ -1,11 +1,11 @@
 /**
  * Configuration for Hono Blog Template
  */
-export interface BlogConfig {
+export interface HonoBlogOptions {
   /**
    * Name of Blog , for `<title>{ BlogName | name of pages will here }</title>`
    */
-  name: string;
+  siteName?: string;
   /**
    * The URL of blog, after deployed
    */
@@ -17,8 +17,16 @@ export interface BlogConfig {
    *
    * must be like - "app" , not "./app"
    */
-  baseURL?: string;
+  baseDir?: string;
   ignore?: string[];
+  /**
+   * Logo for hero section , that will generate favicon.ico if needed.
+   */
+  logo?: string;
+  /**
+   * A brief description of the blog
+   */
+  bio?: string;
   /**
    * Common html meta tags
    */
@@ -38,42 +46,26 @@ export interface BlogConfig {
     keywords?: string[];
     favicon?: string;
     /**
-     * Specifies color schemes with which the document is compatible
+     * To turn web pages into graph objects, need to add basic metadata to the page.
      */
-    colorScheme?: "normal" | "dark light" | "only light";
-  };
-  /**
-   * To turn web pages into graph objects, need to add basic metadata to the page.
-   */
-  openGraph?: {
     /**
      *  The title of the object as it should appear within the graph
      */
-    ogTitle?: string;
+    ogtitle?: string;
     /**
      * The type of the object
      */
-    ogType?: string;
+    ogtype?: string;
     /**
      *  An image URL which should represent the object within the graph.
      */
-    ogImage?: string;
+    ogimage?: string;
     /**
      * The canonical URL of your object that will be used as its permanent ID in the graph
      */
-    ogUrl?: string;
-  };
-  /**
-   * For hero section of home page.
-   */
-  home?: {
+    ogurl?: string;
     /**
-     * Logo for hero section , that will generate favicon.ico if needed.
+     * For hero section of home page.
      */
-    logo?: string;
-    /**
-     * A brief description of the blog
-     */
-    bio?: string;
   };
 }

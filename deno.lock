@@ -2,24 +2,14 @@
   "version": "3",
   "packages": {
     "specifiers": {
-      "jsr:@hono/hono@^4.4.7": "jsr:@hono/hono@4.5.3",
       "jsr:@hono/hono@^4.5.3": "jsr:@hono/hono@4.5.3",
-      "jsr:@ptm/hono-image@^0.1.1": "jsr:@ptm/hono-image@0.1.1",
       "jsr:@ptm/mm-mark@^0.2.11": "jsr:@ptm/mm-mark@0.2.11",
       "jsr:@ptm/mm-mark@^0.2.8": "jsr:@ptm/mm-mark@0.2.8",
-      "jsr:@std/assert@^0.226.0": "jsr:@std/assert@0.226.0",
-      "jsr:@std/collections@^1.0.4": "jsr:@std/collections@1.0.5",
-      "jsr:@std/encoding@^0.224.3": "jsr:@std/encoding@0.224.3",
       "jsr:@std/encoding@^1.0.1": "jsr:@std/encoding@1.0.1",
-      "jsr:@std/front-matter@^1.0.0": "jsr:@std/front-matter@1.0.0",
       "jsr:@std/fs@^1.0.0": "jsr:@std/fs@1.0.0",
       "jsr:@std/path@1.0.0-rc.1": "jsr:@std/path@1.0.0-rc.1",
-      "jsr:@std/path@^0.225.2": "jsr:@std/path@0.225.2",
       "jsr:@std/path@^1.0.2": "jsr:@std/path@1.0.2",
-      "jsr:@std/toml@^1.0.0": "jsr:@std/toml@1.0.0",
       "jsr:@std/url@^0.224.1": "jsr:@std/url@0.224.1",
-      "jsr:@std/yaml@^1.0.0": "jsr:@std/yaml@1.0.0",
-      "npm:@imagemagick/magick-wasm@0.0.29": "npm:@imagemagick/magick-wasm@0.0.29",
       "npm:@types/jsdom": "npm:@types/jsdom@21.1.7",
       "npm:@types/node": "npm:@types/node@18.16.19",
       "npm:bagancss@^0.0.11": "npm:bagancss@0.0.11",
@@ -39,15 +29,6 @@
       "@hono/hono@4.5.3": {
         "integrity": "429923b2b3c6586a1450862328d61a1346fee5841e8ae86c494250475057213c"
       },
-      "@ptm/hono-image@0.1.1": {
-        "integrity": "8708ab6bb85b8ff26d90725f3a202ea81245a2ac4a79844c878b48569ff618b1",
-        "dependencies": [
-          "jsr:@hono/hono@^4.4.7",
-          "jsr:@std/encoding@^0.224.3",
-          "jsr:@std/path@^0.225.2",
-          "npm:@imagemagick/magick-wasm@0.0.29"
-        ]
-      },
       "@ptm/mm-mark@0.2.11": {
         "integrity": "169efffcaa1659c6b240c32504033ec84783e32553f5127117c63f79bf6e0499",
         "dependencies": [
@@ -65,35 +46,13 @@
           "npm:showdown@^2.1.0"
         ]
       },
-      "@std/assert@0.226.0": {
-        "integrity": "0dfb5f7c7723c18cec118e080fec76ce15b4c31154b15ad2bd74822603ef75b3"
-      },
-      "@std/collections@1.0.5": {
-        "integrity": "ab9eac23b57a0c0b89ba45134e61561f69f3d001f37235a248ed40be260c0c10"
-      },
-      "@std/encoding@0.224.3": {
-        "integrity": "5e861b6d81be5359fad4155e591acf17c0207b595112d1840998bb9f476dbdaf"
-      },
       "@std/encoding@1.0.1": {
         "integrity": "5955c6c542ebb4ce6587c3b548dc71e07a6c27614f1976d1d3887b1196cf4e65"
-      },
-      "@std/front-matter@1.0.0": {
-        "integrity": "8616ac9fec252fa36d2af034c3fc166f642b7a721995eb61a33002a6fd176e2c",
-        "dependencies": [
-          "jsr:@std/toml@^1.0.0",
-          "jsr:@std/yaml@^1.0.0"
-        ]
       },
       "@std/fs@1.0.0": {
         "integrity": "d72e4a125af7168d717a2ed1dca77a728b422b0d138fd20579e3fa41a77da943",
         "dependencies": [
           "jsr:@std/path@^1.0.2"
-        ]
-      },
-      "@std/path@0.225.2": {
-        "integrity": "0f2db41d36b50ef048dcb0399aac720a5348638dd3cb5bf80685bf2a745aa506",
-        "dependencies": [
-          "jsr:@std/assert@^0.226.0"
         ]
       },
       "@std/path@1.0.0-rc.1": {
@@ -102,20 +61,11 @@
       "@std/path@1.0.2": {
         "integrity": "a452174603f8c620bd278a380c596437a9eef50c891c64b85812f735245d9ec7"
       },
-      "@std/toml@1.0.0": {
-        "integrity": "c9e37564eedd84084871c66238e00196ec67aa958e09a7f761b3f36273a7a8a5",
-        "dependencies": [
-          "jsr:@std/collections@^1.0.4"
-        ]
-      },
       "@std/url@0.224.1": {
         "integrity": "19f0e1c6ff8fc2ef9522a746595c24f53be47425daa910eb8ef39cbb5e00b3df",
         "dependencies": [
           "jsr:@std/path@1.0.0-rc.1"
         ]
-      },
-      "@std/yaml@1.0.0": {
-        "integrity": "06635c312121ee779e9eef4e9f49c1a26003b15da9ed1178037ccb91dc3a5129"
       }
     },
     "npm": {
@@ -129,10 +79,6 @@
           "@deno/shim-deno-test": "@deno/shim-deno-test@0.5.0",
           "which": "which@4.0.0"
         }
-      },
-      "@imagemagick/magick-wasm@0.0.29": {
-        "integrity": "sha512-kK8X0hfQIxfiOqSkDym+Nh542ACeJqM0yWQnWn77SM8CNST4lTeHmVCBNvDTRzpxKoDCcfoZQYRh9CasZLD6Iw==",
-        "dependencies": {}
       },
       "@isaacs/cliui@8.0.2": {
         "integrity": "sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==",
@@ -779,11 +725,5 @@
       }
     }
   },
-  "remote": {},
-  "workspace": {
-    "dependencies": [
-      "jsr:@ptm/hono-image@^0.1.1",
-      "jsr:@std/front-matter@^1.0.0"
-    ]
-  }
+  "remote": {}
 }

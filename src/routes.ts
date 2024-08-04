@@ -1,30 +1,35 @@
 import { mark } from "./markdown.ts";
 import { globSync, path } from "./deps.ts";
-import type { BlogConfig } from "./configuration.ts";
+import type { HonoBlogOptions } from "./configuration.ts";
 import { getFilename } from "./utils.ts";
 
 export interface Route {
   path: string;
-  filename: string;
+  fileLoc: string;
 }
-export interface MRoute extends Route {
+export interface PageRoute extends Route {
   linkTitle: string;
 }
+export interface PostRoute extends PageRoute {
+  birthtime: Date | null;
+  f_name: string;
+}
 export type Routes = Array<Route>;
-export type MRoutes = Array<MRoute>;
+export type PageRoutes = Array<PageRoute>;
+export type PostRoutes = Array<PostRoute>;
 //
 export const getMdFiles = (
-  baseUrl: BlogConfig["baseURL"] = "app",
+  baseUrl: HonoBlogOptions["baseDir"] = "app",
   ignore: string[] = []
-): { indexroute: Routes; postsroute: MRoutes; pagesroute: MRoutes } => {
+): { indexroute: Routes; postsroute: PostRoutes; pagesroute: PageRoutes } => {
   const cwd = Deno.cwd();
   const appDir = path.join(cwd, baseUrl);
   const cssf: string[] = globSync(`${appDir}/**/*.md`, {
     ignore: ["node_modules", ...ignore],
   });
   const indexroute: Routes = [];
-  const postsroute: MRoutes = [];
-  const pagesroute: MRoutes = [];
+  const postsroute: PostRoutes = [];
+  const pagesroute: PageRoutes = [];
 
   cssf.forEach((filePath) => {
     try {
@@ -32,14 +37,21 @@ export const getMdFiles = (
       const fn = title.toLowerCase().split(" ").join("-");
       const route = {
         path: `/${type}s/${fn}`,
-        filename: `.${filePath}`,
+        fileLoc: `./${filePath}`,
         linkTitle: title,
+      };
+      const post_route = {
+        path: `/${type}s/${fn}`,
+        fileLoc: `./${filePath}`,
+        linkTitle: title,
+        birthtime: Deno.statSync(filePath).birthtime,
+        f_name: fn,
       };
 
       if (type === "index") {
-        indexroute.push({ path: "/", filename: `.${filePath}` });
+        indexroute.push({ path: "/", fileLoc: `.${filePath}` });
       } else if (type === "post") {
-        postsroute.push(route);
+        postsroute.push(post_route);
       } else if (type === "page") {
         pagesroute.push(route);
       }
@@ -47,18 +59,26 @@ export const getMdFiles = (
       console.log(`Error processing markdown file ${filePath}:`, error);
     }
   });
-
+  postsroute.sort((a, b) => {
+    if (a.birthtime && b.birthtime) {
+      return b.birthtime.getTime() - a.birthtime.getTime();
+    } else {
+      // Handle the case when either a.birthtime or b.birthtime is null
+      // You can decide how you want to handle this case
+      return 0;
+    }
+  });
   return { indexroute, postsroute, pagesroute };
 };
 //
 export const getImgFiles = (
-  baseUrl: BlogConfig["baseURL"] = "app",
+  baseUrl: HonoBlogOptions["baseDir"] = "app",
   ignore: string[] = []
 ): { imgIndexRoute: Routes; imgPostRoute: Routes; imgPageRoute: Routes } => {
   const cwd = Deno.cwd();
   const appDir = path.join(cwd, baseUrl);
   const files: string[] = globSync(
-    `${appDir}/**/*.{png,jpg,svg,gif,jpeg,webp}`,
+    `${appDir}/**/*.{png,jpg,svg,gif,jpeg,webp,ico}`,
     {
       ignore: ["node_modules", ...ignore],
     }
@@ -73,15 +93,15 @@ export const getImgFiles = (
       const filename = getFilename(filePath);
       imgIndexRoute.push({
         path: `/${filename}`,
-        filename: `.${filePath}`,
+        fileLoc: `./${filePath}`,
       });
       imgPostRoute.push({
         path: `/posts/${filename}`,
-        filename: `.${filePath}`,
+        fileLoc: `./${filePath}`,
       });
       imgPageRoute.push({
         path: `/pages/${filename}`,
-        filename: `.${filePath}`,
+        fileLoc: `./${filePath}`,
       });
     } catch (error) {
       console.log(`Error processing image file ${filePath}:`, error);

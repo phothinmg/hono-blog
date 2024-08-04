@@ -48,3 +48,8 @@
   font-weight: 600;
   margin-right: 18px;
 }
+
+.post-link {
+  text-decoration: none;
+  color: var(--cfg);
+}

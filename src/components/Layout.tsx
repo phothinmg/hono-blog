@@ -1,10 +1,10 @@
 import { type FC, memo, type PropsWithChildren, html } from "../deps.ts";
 import { bundled_css } from "../bundlecss.ts";
-import type { BlogConfig } from "../configuration.ts";
+import type { HonoBlogOptions } from "../configuration.ts";
 import { NavBar } from "./NavBar.tsx";
 
 export interface LayoutProps extends PropsWithChildren {
-  opts?: BlogConfig;
+  options?: HonoBlogOptions;
   seoTitle?: string;
   pageDes?: string;
   pageAuthor?: string;
@@ -16,7 +16,8 @@ export interface LayoutProps extends PropsWithChildren {
 
 export const Layout: FC<LayoutProps> = memo(
   ({
-    opts,
+    options,
+    //
     seoTitle,
     pageDes,
     pageAuthor,
@@ -27,17 +28,16 @@ export const Layout: FC<LayoutProps> = memo(
     children,
   }) => {
     const title = seoTitle
-      ? opts?.name + " " + "|" + " " + seoTitle
-      : opts?.name;
-    const kw = opts?.meta?.keywords ?? [];
-    const gen = opts?.meta?.generator ? "Hono" : "";
-    const des = pageDes ? pageDes : opts?.meta?.description;
-    const author = pageAuthor ? pageAuthor : opts?.meta?.author;
-    const cs = opts?.meta?.colorScheme ?? "normal";
-    const ogtitle = ogTitle ?? opts?.openGraph?.ogTitle;
-    const ogtype = ogType ?? opts?.openGraph?.ogType;
-    const ogimage = ogImage ?? opts?.openGraph?.ogImage;
-    const ogurl = ogUrl ?? opts?.openGraph?.ogUrl;
+      ? options?.siteName + " " + "|" + " " + seoTitle
+      : options?.siteName;
+    const kw = options?.meta?.keywords ?? [];
+    const gen = options?.meta?.generator ? "Hono" : "";
+    const des = pageDes ? pageDes : options?.meta?.description;
+    const aut = pageAuthor ? pageAuthor : options?.meta?.author;
+    const ogtit = ogTitle ?? options?.meta?.ogtitle;
+    const ogtyp = ogType ?? options?.meta?.ogtype;
+    const ogimg = ogImage ?? options?.meta?.ogimage;
+    const ogur = ogUrl ?? options?.meta?.ogurl;
     return (
       <html prefix="og: https://ogp.me/ns#" lang="en">
         <head>
@@ -46,18 +46,18 @@ export const Layout: FC<LayoutProps> = memo(
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          <meta name="color-scheme" content={cs} />
+          <meta name="color-scheme" content="dark light" />
           <meta name="description" content={des} />
-          <meta name="author" content={author} />
+          <meta name="author" content={aut} />
           <meta name="generator" content={gen} />
           <meta name="keywords" content={kw.join(",")} />
-          <meta property="og:title" content={ogtitle} />
-          <meta property="og:type" content={ogtype} />
-          <meta property="og:image" content={ogimage} />
-          <meta property="og:url" content={ogurl} />
+          <meta property="og:title" content={ogtit} />
+          <meta property="og:type" content={ogtyp} />
+          <meta property="og:image" content={ogimg} />
+          <meta property="og:url" content={ogur} />
           <link
             rel="shortcut icon"
-            href={opts?.meta?.favicon}
+            href={options?.meta?.favicon}
             type="image/x-icon"
           />
           <script
@@ -68,7 +68,7 @@ export const Layout: FC<LayoutProps> = memo(
           <style>{bundled_css}</style>
         </head>
         <body>
-          <NavBar baseUrl={opts?.baseURL} ignore={opts?.ignore} />
+          <NavBar baseUrl={options?.baseDir} ignore={options?.ignore} />
           <main>{children}</main>
           {html`<script src="https://cdn.jsdelivr.net/gh/phothinmg/master-repo@main/theme-switch.min.js"></script>`}
         </body>

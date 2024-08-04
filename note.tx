@@ -85,3 +85,36 @@ imagesRoutes.map((i) => {
 });
 
 Deno.serve({ port: 3838 }, app.fetch);
+
+siteName,
+    author,
+    baseDir,
+    colorScheme,
+    description,
+    favicon,
+    generator,
+    ignore,
+    keywords,
+    ogtitle,
+    ogtype,
+    ogimage,
+    ogurl,
+
+
+export const PostCard: FC<{ baseDir?: HonoBlogOptions["baseDir"] }> = memo(({ baseDir }) => {
+   const postFiles = getMdFiles(baseDir).postsroute;
+  return (
+    <div class="card">
+      <h3>{opts.title}</h3>
+      <small class="head-small">{opts.date}</small>
+      <small class="head-small">{`Reading Time: ${rt} minutes`}</small>
+      <br />
+      {opts.tags?.map((i) => {
+        `<small class="badge">${i}</small>`;
+      })}
+      <br />
+      <hr />
+      <p>{opts.description ?? ""}</p>
+    </div>
+  );
+});
