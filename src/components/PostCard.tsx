@@ -10,7 +10,6 @@ export const PostCard: FC<{ opts: MarkOpts }> = memo(({ opts }) => {
       <small class="head-small">{opts.date}</small>
       <small class="head-small">{`Reading Time: ${rt} minutes`}</small>
       <br />
-      <small class="badge">javascript</small>
       {opts.tags?.map((i) => {
         `<small class="badge">${i}</small>`;
       })}

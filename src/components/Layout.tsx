@@ -1,6 +1,7 @@
 import { type FC, memo, type PropsWithChildren, html } from "../deps.ts";
 import { bundled_css } from "../bundlecss.ts";
 import type { BlogConfig } from "../configuration.ts";
+import { NavBar } from "./NavBar.tsx";
 
 export interface LayoutProps extends PropsWithChildren {
   opts?: BlogConfig;
@@ -67,6 +68,7 @@ export const Layout: FC<LayoutProps> = memo(
           <style>{bundled_css}</style>
         </head>
         <body>
+          <NavBar baseUrl={opts?.baseURL} ignore={opts?.ignore} />
           <main>{children}</main>
           {html`<script src="https://cdn.jsdelivr.net/gh/phothinmg/master-repo@main/theme-switch.min.js"></script>`}
         </body>

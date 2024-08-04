@@ -44,3 +44,8 @@ export const getFilename = (filePath: string) => {
 export const getFname = (filePath: string) => {
   return getFilename(filePath).split(".")[0];
 };
+
+// export const getfn = (filePath: string) => {
+//   const fname = getFilename(filePath);
+
+// };

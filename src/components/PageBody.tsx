@@ -4,6 +4,7 @@ import { Layout } from "./Layout.tsx";
 
 export const PageBody: FC<{ filePath: string }> = memo(({ filePath }) => {
   const opts: MarkOpts = mark(filePath);
+  const inner = { _html: opts.html };
   return (
     <Layout
       seoTitle={opts.title}
@@ -15,7 +16,10 @@ export const PageBody: FC<{ filePath: string }> = memo(({ filePath }) => {
       ogUrl={opts.ogurl}
     >
       <div>
-        <div class="post-body">{opts.html}</div>
+        <div
+          class="post-body"
+          dangerouslySetInnerHTML={{ __html: inner._html }}
+        />
       </div>
     </Layout>
   );

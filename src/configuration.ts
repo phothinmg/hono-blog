@@ -18,6 +18,7 @@ export interface BlogConfig {
    * must be like - "app" , not "./app"
    */
   baseURL?: string;
+  ignore?: string[];
   /**
    * Common html meta tags
    */

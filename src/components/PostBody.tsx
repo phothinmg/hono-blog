@@ -6,6 +6,7 @@ import { readingTime } from "../utils.ts";
 export const PostBody: FC<{ filePath: string }> = memo(({ filePath }) => {
   const opts: MarkOpts = mark(filePath);
   const rt = readingTime(opts.html);
+  const inner = { _html: opts.html };
   return (
     <Layout
       seoTitle={opts.title}
@@ -26,7 +27,10 @@ export const PostBody: FC<{ filePath: string }> = memo(({ filePath }) => {
             `<small class="badge">${i}</small>`;
           })}
         </div>
-        <div class="post-body">{opts.html}</div>
+        <div
+          class="post-body"
+          dangerouslySetInnerHTML={{ __html: inner._html }}
+        />
       </div>
     </Layout>
   );
