@@ -51,21 +51,27 @@ export interface HonoBlogOptions {
     /**
      *  The title of the object as it should appear within the graph
      */
-    ogtitle?: string;
+    ogTitle?: string;
     /**
      * The type of the object
      */
-    ogtype?: string;
+    ogType?: string;
     /**
      *  An image URL which should represent the object within the graph.
      */
-    ogimage?: string;
+    ogImage?: string;
     /**
      * The canonical URL of your object that will be used as its permanent ID in the graph
      */
-    ogurl?: string;
+    ogUrl?: string;
     /**
      * For hero section of home page.
      */
+  };
+  socialLink?: {
+    facebook?: string;
+    github?: string;
+    twitter?: string;
+    discord?: string;
   };
 }

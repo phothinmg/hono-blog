@@ -1,20 +1,24 @@
 import { type FC, memo, html } from "../deps.ts";
 import { getMdFiles } from "../routes.ts";
-import type { HonoBlogOptions } from "../configuration.ts";
+import { siteName } from "../config.ts";
+const pagesRoute = getMdFiles().pagesroute;
+const pages = pagesRoute.map(
+  (i) =>
+    html`
+      <li>
+        <a href=${i.path}>${i.linkTitle}</a>
+      </li>
+    `
+);
 
-export const NavBar: FC<{
-  baseUrl?: HonoBlogOptions["baseDir"];
-  ignore?: string[];
-}> = memo(({ baseUrl = "app", ignore = [] }) => {
-  const pr = getMdFiles(baseUrl, ignore).pagesroute;
-
+export const NavBar: FC = memo(() => {
   return (
     <header>
       <nav>
         <ul>
           <li style="font-size: 18px">
             <a href="/" class="nav-link">
-              Hono Blog
+              {siteName}
             </a>
           </li>
           <li class="float-right tb" type="button" data-theme-toggle></li>
@@ -22,18 +26,12 @@ export const NavBar: FC<{
             <a href="#" class="nav-link">
               Pages &#9660;{" "}
             </a>
-            <ul>
-              {pr.map((i) => {
-                return html`
-                  <li>
-                    <a href=${i.path}>${i.linkTitle}</a>
-                  </li>
-                `;
-              })}
-            </ul>
+            <ul>{pages}</ul>
           </li>
           <li class="float-right">
-            <a href="/posts">Posts</a>
+            <a href="/posts" class="nav-link">
+              Posts
+            </a>
           </li>
         </ul>
       </nav>

@@ -2,11 +2,10 @@
   "$schema": "./deno.schema.json",
 
   "tasks": {
-    "start": "deno run -A src/mod.ts"
+    "start": "deno serve -A src/mod.ts"
   },
   "compilerOptions": {
     "jsx": "precompile",
-    "jsxImportSource": "jsr:@hono/hono@^4.5.3/jsx",
-    "lib": ["deno.ns", "dom", "dom.iterable", "dom.asynciterable"]
+    "jsxImportSource": "jsr:@hono/hono@^4.5.3/jsx"
   }
 }

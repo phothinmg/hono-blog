@@ -1,8 +1,17 @@
 import { type FC, memo, type PropsWithChildren, html } from "../deps.ts";
-//import { bundled_css } from "../bundlecss.ts";
 import type { HonoBlogOptions } from "../configuration.ts";
-import { NavBar } from "./NavBar.tsx";
-
+import {
+  siteName,
+  keywords,
+  generator,
+  description,
+  author,
+  ogtitle,
+  ogimage,
+  ogtype,
+  ogurl,
+  favicon,
+} from "../config.ts";
 export interface LayoutProps extends PropsWithChildren {
   options?: HonoBlogOptions;
   seoTitle?: string;
@@ -16,8 +25,6 @@ export interface LayoutProps extends PropsWithChildren {
 
 export const Layout: FC<LayoutProps> = memo(
   ({
-    options,
-    //
     seoTitle,
     pageDes,
     pageAuthor,
@@ -27,17 +34,15 @@ export const Layout: FC<LayoutProps> = memo(
     ogUrl,
     children,
   }) => {
-    const title = seoTitle
-      ? options?.siteName + " " + "|" + " " + seoTitle
-      : options?.siteName;
-    const kw = options?.meta?.keywords ?? [];
-    const gen = options?.meta?.generator ? "Hono" : "";
-    const des = pageDes ? pageDes : options?.meta?.description;
-    const aut = pageAuthor ? pageAuthor : options?.meta?.author;
-    const ogtit = ogTitle ?? options?.meta?.ogtitle;
-    const ogtyp = ogType ?? options?.meta?.ogtype;
-    const ogimg = ogImage ?? options?.meta?.ogimage;
-    const ogur = ogUrl ?? options?.meta?.ogurl;
+    const title = seoTitle ? siteName + " " + "|" + " " + seoTitle : siteName;
+    const kw = keywords ?? [];
+    const gen = generator ? "Hono" : "";
+    const des = pageDes ? pageDes : description;
+    const aut = pageAuthor ? pageAuthor : author;
+    const ogtit = ogTitle ?? ogtitle;
+    const ogtyp = ogType ?? ogtype;
+    const ogimg = ogImage ?? ogimage;
+    const ogur = ogUrl ?? ogurl;
     return (
       <html prefix="og: https://ogp.me/ns#" lang="en">
         <head>
@@ -55,21 +60,18 @@ export const Layout: FC<LayoutProps> = memo(
           <meta property="og:type" content={ogtyp} />
           <meta property="og:image" content={ogimg} />
           <meta property="og:url" content={ogur} />
-          <link
-            rel="shortcut icon"
-            href={options?.meta?.favicon}
-            type="image/x-icon"
-          />
+          <link rel="shortcut icon" href={favicon} type="image/x-icon" />
           <script
             src="https://kit.fontawesome.com/50c925d5df.js"
             crossorigin="anonymous"
           ></script>
-          <link rel="stylesheet" href="https://classless.de/classless.css"></link>
-          <link rel="stylesheet" href="https://classless.de/addons/themes.css" />
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/phothinmg/master-repo@main/hono-blog.css"
+          ></link>
           <title>{title}</title>
         </head>
         <body>
-          <NavBar baseUrl={options?.baseDir} ignore={options?.ignore} />
           <main>{children}</main>
           {html`<script src="https://cdn.jsdelivr.net/gh/phothinmg/master-repo@main/theme-switch.min.js"></script>`}
         </body>

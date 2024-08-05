@@ -1,7 +1,7 @@
 import { mark } from "./markdown.ts";
 import { globSync, path } from "./deps.ts";
-import type { HonoBlogOptions } from "./configuration.ts";
 import { getFilename } from "./utils.ts";
+import { baseDir, ignore } from "./config.ts";
 
 export interface Route {
   path: string;
@@ -18,12 +18,13 @@ export type Routes = Array<Route>;
 export type PageRoutes = Array<PageRoute>;
 export type PostRoutes = Array<PostRoute>;
 //
-export const getMdFiles = (
-  baseUrl: HonoBlogOptions["baseDir"] = "app",
-  ignore: string[] = []
-): { indexroute: Routes; postsroute: PostRoutes; pagesroute: PageRoutes } => {
+export const getMdFiles = (): {
+  indexroute: Routes;
+  postsroute: PostRoutes;
+  pagesroute: PageRoutes;
+} => {
   const cwd = Deno.cwd();
-  const appDir = path.join(cwd, baseUrl);
+  const appDir = path.join(cwd, baseDir);
   const cssf: string[] = globSync(`${appDir}/**/*.md`, {
     ignore: ["node_modules", ...ignore],
   });
@@ -49,7 +50,7 @@ export const getMdFiles = (
       };
 
       if (type === "index") {
-        indexroute.push({ path: "/", fileLoc:  filePath });
+        indexroute.push({ path: "/", fileLoc: filePath });
       } else if (type === "post") {
         postsroute.push(post_route);
       } else if (type === "page") {
@@ -71,12 +72,13 @@ export const getMdFiles = (
   return { indexroute, postsroute, pagesroute };
 };
 //
-export const getImgFiles = (
-  baseUrl: HonoBlogOptions["baseDir"] = "app",
-  ignore: string[] = []
-): { imgIndexRoute: Routes; imgPostRoute: Routes; imgPageRoute: Routes } => {
+export const getImgFiles = (): {
+  imgIndexRoute: Routes;
+  imgPostRoute: Routes;
+  imgPageRoute: Routes;
+} => {
   const cwd = Deno.cwd();
-  const appDir = path.join(cwd, baseUrl);
+  const appDir = path.join(cwd, baseDir);
   const files: string[] = globSync(
     `${appDir}/**/*.{png,jpg,svg,gif,jpeg,webp,ico}`,
     {
@@ -93,15 +95,15 @@ export const getImgFiles = (
       const filename = getFilename(filePath);
       imgIndexRoute.push({
         path: `/${filename}`,
-        fileLoc:  filePath,
+        fileLoc: filePath,
       });
       imgPostRoute.push({
         path: `/posts/${filename}`,
-        fileLoc:  filePath,
+        fileLoc: filePath,
       });
       imgPageRoute.push({
         path: `/pages/${filename}`,
-        fileLoc:  filePath,
+        fileLoc: filePath,
       });
     } catch (error) {
       console.log(`Error processing image file ${filePath}:`, error);
