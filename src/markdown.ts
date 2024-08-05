@@ -15,10 +15,9 @@ export interface AttrsPost {
 export interface MarkOpts extends AttrsPost {
   html: string;
 }
-
 export function mark(filePath: string): MarkOpts {
   const tx: string = readFile(filePath);
-  const c = Mmmark.converter<AttrsPost>(tx, {
+  const c = new Mmmark.ConvertMd<AttrsPost>(tx, {
     extensions: ["showdownMathjax"],
   });
   const data: AttrsPost = c.data;

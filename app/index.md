@@ -21,9 +21,5 @@ title: "Home"
 
 ![logo](logo.png =100x100)
 
-$$
-\begin{eqnarray}
-\bf {a+2+\alpha+\frac{x+3}{\beta+4}}
-\newline  \color{red}{ \frac{1+\sqrt{5}}{2} }
-\end{eqnarray}
-$$
+
+$$ x=\frac{ -b\pm\sqrt{ b^2-4ac } } {2a} $$

@@ -132,6 +132,12 @@ export const Layout: FC<LayoutProps> = memo(
               const button = document.querySelector("[data-theme-toggle]");
               const currentCta = currentThemeSetting === "dark" ? "☀" : "☪";
               button.innerHTML = currentCta;
+
+              // Set the initial theme on page load
+              document
+                .querySelector("html")
+                .setAttribute("data-theme", currentThemeSetting);
+
               button.addEventListener("click", () => {
                 const newTheme =
                   currentThemeSetting === "dark" ? "light" : "dark";
