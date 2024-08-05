@@ -10,15 +10,25 @@ const PostCards: FC = memo(() => (
       (i) =>
         html`
           <div class="card">
-            <a href="{linkArray.}" class="post-link">
+            <a href=${i.path} class="post-link" rel="noopener noreferrer">
               <h3>${i.title}</h3>
             </a>
             <small class="head-small">${i.date}</small>
             <small class="head-small">${i.readingTime}</small>
             <br />
-            ${i.tags?.map((i) => html`<small class="badge">${i}</small>`)}
+            <br />
+            ${Array.isArray(i.tags)
+              ? i.tags.map(
+                  (tag) =>
+                    html`<small class="badge" style="margin-right: 7px;"
+                      >${tag}</small
+                    >`
+                )
+              : ""}
+            <br />
+            <br />
             <hr />
-            <p>${i.des ?? ""}</p>
+            <p>${i.des ?? " "}</p>
           </div>
         `
     )}

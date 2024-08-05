@@ -6,6 +6,7 @@ export { JSDOM } from "npm:jsdom@^24.1.1";
 export type * as Jsdom from "npm:@types/jsdom";
 //
 export { Mmmark } from "jsr:@ptm/mm-mark@^0.2.11";
+export * as showdownMathjax from "npm:showdown-mathjax@^1.0.6";
 //
 export { Hono, type HonoRequest } from "jsr:@hono/hono@^4.5.3";
 /* JSX 

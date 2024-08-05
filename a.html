@@ -9,27 +9,56 @@
       src="https://kit.fontawesome.com/50c925d5df.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="https://classless.de/classless.css">
+    <link rel="stylesheet" href="https://classless.de/classless.css" />
+    <link rel="stylesheet" href="https://classless.de/addons/themes.css" />
     <title>Document</title>
   </head>
   <body>
     <main>
-      <div class="card">
-        <h3>Hello</h3>
-        <small class="head-small">Wed 04 Aug 2024</small>
-        <small class="head-small">Reading Time: 24 min</small>
-        <br />
-        <small class="badge">javascript</small>
-        <br />
-        <hr />
-        <p>
-          This text is on the other side explaining something. If the width of
-          the viewport is small enough, this text should be visible below the
-          the heading on the left.
-        </p>
-      </div>
-
-      <script src="https://cdn.jsdelivr.net/gh/phothinmg/master-repo@main/theme-switch.min.js"></script>
+      <header>
+        <nav>
+          <ul>
+            <li style="font-size: 18px">
+              <a href="/" class="nav-link"> {siteName} </a>
+            </li>
+            <li
+              class="float-right tb"
+              type="button"
+              onclick="toggleDarkMode(el)"
+            >
+              ☪
+            </li>
+            <li class="float-right">
+              <a href="#" class="nav-link"> Pages &#9660;{" "} </a>
+              <ul>
+                {pages}
+              </ul>
+            </li>
+            <li class="float-right">
+              <a href="/posts" class="nav-link"> Posts </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <script>
+        function addFontSize(addPx) {
+          html = document.querySelector("html");
+          currentSize = parseFloat(
+            window.getComputedStyle(html, null).getPropertyValue("font-size")
+          );
+          html.style.fontSize = currentSize + addPx + "px";
+        }
+        function toggleDarkMode(el) {
+          var theme = "light";
+          if (el.innerText == "☪") {
+            el.innerText = "☀";
+            theme = "dark";
+          } else {
+            el.innerText = "☪";
+          }
+          document.documentElement.setAttribute("data-theme", theme);
+        }
+      </script>
     </main>
   </body>
 </html>

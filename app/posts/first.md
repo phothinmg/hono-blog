@@ -4,9 +4,11 @@ title: "First Post"
 author: "PTM"
 date: 2024-08-04
 description: "Example Post"
-tag: 
- -example
+tags: 
+ - example
 ogurl:
 ogtype:
 ogtitle:
 ---
+
+![logo](logo.png)

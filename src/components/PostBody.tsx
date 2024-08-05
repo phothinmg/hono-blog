@@ -2,13 +2,15 @@ import { type FC, memo, html } from "../deps.ts";
 import { type MarkOpts, mark } from "../markdown.ts";
 import { Layout } from "./Layout.tsx";
 import { readingTime } from "../utils.ts";
-
-const PostView: FC<{ filePath: string }> = memo(({ filePath }) => {
+import { NavBar } from "./NavBar.tsx";
+export const PostView: FC<{ filePath: string }> = memo(({ filePath }) => {
   const opts: MarkOpts = mark(filePath);
   const rt = readingTime(opts.html);
-  const badges = opts.tags?.map((i) => {
-    return html`<small class="badge">${i}</small>`;
-  });
+  const badges =
+    Array.isArray(opts.tags) &&
+    opts.tags.map((i) => {
+      return html`<small>${i}</small>`;
+    });
   const inner = { _html: opts.html };
   return (
     <Layout
@@ -20,9 +22,10 @@ const PostView: FC<{ filePath: string }> = memo(({ filePath }) => {
       ogType={opts.ogtype}
       ogUrl={opts.ogurl}
     >
+      <NavBar />
       <div>
         <div class="post-head">
-          <h2>{opts.title}</h2>
+          <h3>{opts.title}</h3>
           <small class="head-small">{opts.date}</small>
           <small class="head-small">{`Reading Time: ${rt}  minutes`}</small>
           <br />

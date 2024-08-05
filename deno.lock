@@ -22,6 +22,7 @@
       "npm:jsdom@^24.1.1": "npm:jsdom@24.1.1",
       "npm:showdown-admonitionblock@^1.0.2": "npm:showdown-admonitionblock@1.0.2",
       "npm:showdown-mathjax@^1.0.4": "npm:showdown-mathjax@1.0.4",
+      "npm:showdown-mathjax@^1.0.6": "npm:showdown-mathjax@1.0.6",
       "npm:showdown-prism@^1.0.7": "npm:showdown-prism@1.0.7",
       "npm:showdown@^2.1.0": "npm:showdown@2.1.0"
     },
@@ -562,6 +563,12 @@
       },
       "showdown-mathjax@1.0.4": {
         "integrity": "sha512-ysoutK/Yfybrp1hMU7nmdRQxshBGsGyOk9Ig91kvNxW6GiTUiUwbehupBQTMaWLC3qOKR1VZCmFYPtKqcHfUCA==",
+        "dependencies": {
+          "showdown": "showdown@2.1.0"
+        }
+      },
+      "showdown-mathjax@1.0.6": {
+        "integrity": "sha512-zsa/D0MO3pS0v8/S0r0hbST/duIL8trasx+p/aJc7PPUTB5n9oE7e2MQTdSwolWx2ihnxnzN3ejPouU+6NZjzw==",
         "dependencies": {
           "showdown": "showdown@2.1.0"
         }

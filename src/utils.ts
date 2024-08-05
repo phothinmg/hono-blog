@@ -5,15 +5,10 @@
  * @return {string} The content of the file as a string.
  */
 export function readFile(file: string): string {
-  try {
-    const decoder = new TextDecoder("utf-8");
-    const fdata = Deno.readFileSync(file);
-    const data = decoder.decode(fdata);
-    return data;
-  } catch (error) {
-    console.error(`Error reading file ${file}:`, error);
-    throw error;
-  }
+  const decoder = new TextDecoder("utf-8");
+  const fdata = Deno.readFileSync(file);
+  const data = decoder.decode(fdata);
+  return data;
 }
 /**
  * Calculates the estimated reading time of a given text.

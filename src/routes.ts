@@ -77,10 +77,10 @@ export const getImgFiles = (): {
   imgPostRoute: Routes;
   imgPageRoute: Routes;
 } => {
-  const cwd = Deno.cwd();
-  const appDir = path.join(cwd, baseDir);
+  // const cwd = Deno.cwd();
+  // const appDir = path.join(cwd, baseDir);
   const files: string[] = globSync(
-    `${appDir}/**/*.{png,jpg,svg,gif,jpeg,webp,ico}`,
+    `${baseDir}/**/*.{png,jpg,svg,gif,jpeg,webp,ico}`,
     {
       ignore: ["node_modules", ...ignore],
     }

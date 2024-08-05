@@ -1,13 +1,12 @@
 import { Mmmark } from "./deps.ts";
 import { readFile } from "./utils.ts";
-
 export interface AttrsPost {
   type: "page" | "post" | "index";
   title: string;
   date?: Date | string;
   author?: string;
   description?: string;
-  tags?: string[] | [];
+  tags?: string[];
   ogimage?: string;
   ogurl?: string;
   ogtype?: string;
@@ -18,8 +17,10 @@ export interface MarkOpts extends AttrsPost {
 }
 
 export function mark(filePath: string): MarkOpts {
-  const tx: string = Deno.readTextFileSync(filePath);
-  const c = Mmmark.converter<AttrsPost>(tx);
+  const tx: string = readFile(filePath);
+  const c = Mmmark.converter<AttrsPost>(tx, {
+    extensions: ["showdownMathjax"],
+  });
   const data: AttrsPost = c.data;
   const html: string = c.html;
   return {
@@ -33,7 +34,7 @@ export function mark(filePath: string): MarkOpts {
     }),
     author: data.author ?? "",
     description: data.description ?? "",
-    tags: data.tags ?? [],
+    tags: data.tags,
     ogimage: data.ogimage ?? "",
     ogtype: data.ogtype ?? "",
     ogurl: data.ogurl ?? "",

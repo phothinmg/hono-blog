@@ -21,7 +21,7 @@ export const NavBar: FC = memo(() => {
               {siteName}
             </a>
           </li>
-          <li class="float-right tb" type="button" data-theme-toggle></li>
+          <li class="float-right tb" type="button" data-theme-toggle style="font-size: 18px;"></li>
           <li class="float-right">
             <a href="#" class="nav-link">
               Pages &#9660;{" "}
