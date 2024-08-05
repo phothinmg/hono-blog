@@ -1,3 +1,38 @@
+.blog-nav {
+  display: block;
+  padding: 10px;
+  font-size: small;
+  .left-blog {
+    float: left;
+    a {
+      color: var(--cfg);
+      text-decoration: none;
+      i {
+        margin-right: 18px;
+      }
+    }
+    a:hover {
+      cursor: pointer;
+      color: var(--clink);
+    }
+  }
+  .right-blog {
+    float: right;
+    a {
+      color: var(--cfg);
+      text-decoration: none;
+      i {
+        margin-left: 18px;
+      }
+    }
+    a:hover {
+      cursor: pointer;
+      color: var(--clink);
+    }
+  }
+}
+
+/*  */
 .nav-link {
   text-decoration: none;
   color: var(--cfg);

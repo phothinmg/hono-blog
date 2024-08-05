@@ -145,3 +145,6 @@ export const PostCard: FC<{ baseDir?: HonoBlogOptions["baseDir"] }> = memo(({ ba
       ![foo](foo.jpg =100x80)     simple, assumes units are in px
 ![bar](bar.jpg =100x*)      sets the height to "auto"
 ![baz](baz.jpg =80%x5em)  Image with width of 80% and height of 5em
+
+<i class="fa-solid fa-angles-left"></i>
+<i class="fa-solid fa-angles-right"></i>

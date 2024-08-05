@@ -6,16 +6,10 @@ const bundlecss = (files: string[]): string => {
   const cssContent = content.join("\n");
   const bd = transformContent({
     content: cssContent,
-    minify: true,
-    sourceMap: true,
   }) as LTR;
   return bd.csscode + "\n" + bd.mapcode;
 };
 
-const css_files = [
-  "src/style/main.css",
-  "src/style/theme.css",
-  "src/style/others.css",
-];
+const css_files = ["src/style/add-on.css"];
 
 export const bundled_css = bundlecss(css_files);

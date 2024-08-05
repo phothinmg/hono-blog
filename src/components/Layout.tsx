@@ -1,5 +1,6 @@
-import { type FC, memo, type PropsWithChildren, html } from "../deps.ts";
-import type { HonoBlogOptions } from "../configuration.ts";
+import { type FC, memo, type PropsWithChildren, html } from "../lib/deps.ts";
+import type { HonoBlogOptions } from "../lib/configuration.ts";
+import { NavBar } from "./NavBar.tsx";
 import {
   siteName,
   keywords,
@@ -11,7 +12,8 @@ import {
   ogtype,
   ogurl,
   favicon,
-} from "../config.ts";
+} from "../lib/config.ts";
+import { bundled_css } from "../lib/bundlecss.ts";
 export interface LayoutProps extends PropsWithChildren {
   options?: HonoBlogOptions;
   seoTitle?: string;
@@ -67,7 +69,7 @@ export const Layout: FC<LayoutProps> = memo(
           ></script>
           <link
             rel="stylesheet"
-            href="https://cdn.jsdelivr.net/gh/phothinmg/master-repo@main/hono-blog.css"
+            href="https://cdn.jsdelivr.net/gh/phothinmg/master-repo@main/honoblog.css"
           ></link>
           <link
             rel="stylesheet"
@@ -80,9 +82,13 @@ export const Layout: FC<LayoutProps> = memo(
           <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
           <script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
           <title>{title}</title>
+          <style>{bundled_css}</style>
         </head>
         <body>
-          <main>{children}</main>
+          <main>
+            <NavBar />
+            {children}
+          </main>
           {html`
             <script>
               hljs.addPlugin(

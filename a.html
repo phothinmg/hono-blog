@@ -3,8 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./src/style/main.css" />
-    <link rel="stylesheet" href="./src/style/others.css" />
     <script
       src="https://kit.fontawesome.com/50c925d5df.js"
       crossorigin="anonymous"
@@ -12,53 +10,42 @@
     <link rel="stylesheet" href="https://classless.de/classless.css" />
     <link rel="stylesheet" href="https://classless.de/addons/themes.css" />
     <title>Document</title>
+    <style>
+      .blog-nav {
+        display: block;
+      }
+      .left-blog {
+        float: left;
+      }
+      .right-blog {
+        float: right;
+      }
+      .blog-nav-link {
+        color: var(--cfg);
+        text-decoration: none;
+      }
+      .blog-nav-link:hover {
+        cursor: pointer;
+        color: var(--clink);
+      }
+      .blog-icon {
+        margin-left: 7px;
+        margin-right: 7px;
+      }
+    </style>
   </head>
   <body>
     <main>
-      <header>
-        <nav >
-          <ul>
-            <li style="font-size: 18px">
-              <a href="/" class="nav-link"> {siteName} </a>
-            </li>
-            <li
-              class="float-right tb"
-              type="button"
-              onclick="toggleDarkMode(el)"
-            >
-              ☪
-            </li>
-            <li class="float-right">
-              <a href="#" class="nav-link"> Pages &#9660;{" "} </a>
-              <ul>
-                {pages}
-              </ul>
-            </li>
-            <li class="float-right">
-              <a href="/posts" class="nav-link"> Posts </a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <script>
-        function addFontSize(addPx) {
-          html = document.querySelector("html");
-          currentSize = parseFloat(
-            window.getComputedStyle(html, null).getPropertyValue("font-size")
-          );
-          html.style.fontSize = currentSize + addPx + "px";
-        }
-        function toggleDarkMode(el) {
-          var theme = "light";
-          if (el.innerText == "☪") {
-            el.innerText = "☀";
-            theme = "dark";
-          } else {
-            el.innerText = "☪";
-          }
-          document.documentElement.setAttribute("data-theme", theme);
-        }
-      </script>
+      <div class="blog-nav">
+        <div class="left-blog">
+          <a href="" class="blog-nav-link">Left</a>
+        </div>
+        <div class="right-blog">
+          <a href="" class="blog-nav-link"
+            >Right<i class="fa-solid fa-arrow-right-long blog-icon"></i
+          ></a>
+        </div>
+      </div>
     </main>
   </body>
 </html>

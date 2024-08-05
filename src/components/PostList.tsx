@@ -1,7 +1,6 @@
-import { type FC, memo, Hono, html } from "../deps.ts";
+import { type FC, memo, Hono, html } from "../lib/deps.ts";
 import { Layout } from "./Layout.tsx";
-import { NavBar } from "./NavBar.tsx";
-import linkArray from "../linkarray.ts";
+import linkArray from "../lib/linkarray.ts";
 const postslist = new Hono();
 
 const PostCards: FC = memo(() => (
@@ -38,7 +37,6 @@ const PostCards: FC = memo(() => (
 const PostList: FC = memo(() => (
   <>
     <Layout seoTitle="All Posts">
-      <NavBar />
       <PostCards />
     </Layout>
   </>

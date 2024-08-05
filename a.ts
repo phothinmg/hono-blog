@@ -1,3 +1,2 @@
-import { getMdFiles } from "./src/routes.ts";
-
-console.log(getMdFiles().postsroute);
+const a = ["a", "b", "c"];
+console.log(a.indexOf("b"))

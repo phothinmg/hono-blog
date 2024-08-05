@@ -1,8 +1,8 @@
-import { type FC, memo, html } from "../deps.ts";
-import { type MarkOpts, mark } from "../markdown.ts";
+import { type FC, memo, html } from "../lib/deps.ts";
+import { type MarkOpts, mark } from "../lib/markdown.ts";
 import { Layout } from "./Layout.tsx";
-import { readingTime } from "../utils.ts";
-import { NavBar } from "./NavBar.tsx";
+import { readingTime } from "../lib/utils.ts";
+import { PNLink } from "./PNLink.tsx";
 export const PostView: FC<{ filePath: string }> = memo(({ filePath }) => {
   const opts: MarkOpts = mark(filePath);
   const rt = readingTime(opts.html);
@@ -22,7 +22,6 @@ export const PostView: FC<{ filePath: string }> = memo(({ filePath }) => {
       ogType={opts.ogtype}
       ogUrl={opts.ogurl}
     >
-      <NavBar />
       <div>
         <div class="post-head">
           <h3>{opts.title}</h3>
@@ -35,6 +34,7 @@ export const PostView: FC<{ filePath: string }> = memo(({ filePath }) => {
           class="post-body"
           dangerouslySetInnerHTML={{ __html: inner._html }}
         />
+        <PNLink title={opts.title} />
       </div>
     </Layout>
   );

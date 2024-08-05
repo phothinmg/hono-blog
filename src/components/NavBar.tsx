@@ -1,6 +1,6 @@
-import { type FC, memo, html } from "../deps.ts";
-import { getMdFiles } from "../routes.ts";
-import { siteName } from "../config.ts";
+import { type FC, memo, html } from "../lib/deps.ts";
+import { getMdFiles } from "../lib/routes.ts";
+import { siteName } from "../lib/config.ts";
 const pagesRoute = getMdFiles().pagesroute;
 const pages = pagesRoute.map(
   (i) =>
@@ -21,7 +21,12 @@ export const NavBar: FC = memo(() => {
               {siteName}
             </a>
           </li>
-          <li class="float-right tb" type="button" data-theme-toggle style="font-size: 18px;"></li>
+          <li
+            class="float-right tb"
+            type="button"
+            data-theme-toggle
+            style="font-size: 18px;"
+          ></li>
           <li class="float-right">
             <a href="#" class="nav-link">
               Pages &#9660;{" "}

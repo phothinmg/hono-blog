@@ -1,4 +1,4 @@
-import config from "../_config.ts";
+import config from "../../_config.ts";
 
 export const siteName = config.siteName ?? "Hono Blog";
 
