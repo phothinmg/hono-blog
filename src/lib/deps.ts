@@ -21,7 +21,7 @@ export type {
   DragEvent,
   JSX,
 } from "jsr:@hono/hono@^4.5.3/jsx";
-
+export { css, Style } from "jsr:@hono/hono@^4.5.3/css";
 export {
   memo,
   Fragment,
