@@ -25,11 +25,11 @@ export const PostView: FC<{ filePath: string; options?: HonoBlogOptions }> =
         ogType={opts.ogtype}
         ogUrl={opts.ogurl}
       >
-        <div>
+        <div class="post">
           <div class="post-head">
             <h3>{opts.title}</h3>
-            <small class="head-small">{opts.date}</small>
-            <small class="head-small">{`Reading Time: ${rt}  minutes`}</small>
+            <small>{opts.date}</small>
+            <small>{`Reading Time: ${rt}  minutes`}</small>
             <br />
             {badges}
           </div>

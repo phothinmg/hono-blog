@@ -2,7 +2,7 @@
   "$schema": "./deno.schema.json",
 
   "tasks": {
-    "start": "deno serve -A src/mod.ts"
+    "start": "deno serve -A a.ts"
   },
   "compilerOptions": {
     "jsx": "precompile",

@@ -1,2 +1,7 @@
-const a = ["a", "b", "c"];
-console.log(a.indexOf("b"))
+import { blog } from "./src/mod.ts";
+
+const app = blog({
+    siteName: "Foe Htin"
+})
+
+export default app
