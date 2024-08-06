@@ -6,7 +6,7 @@ import { PageView } from "./PageBody.tsx";
 import { getMdFiles, getImgFiles } from "../lib/routes.ts";
 import type { HonoBlogOptions } from "../lib/configuration.ts";
 
-export const blog = (options?: HonoBlogOptions) => {
+export const blog = (options?: HonoBlogOptions): Hono => {
   const app = new Hono();
   const pa = getMdFiles(options).postsroute;
   const pages = getMdFiles(options).pagesroute;

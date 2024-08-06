@@ -3,10 +3,6 @@
   "name": "@ptm/hono-blog",
   "version": "0.0.1",
   "exports": "./src/mod.ts",
-  "publish": {
-    "include": ["LICENSE", "deno.schema.json", "README.md", "src/*"],
-    "exclude": ["task", "app"]
-  },
   "tasks": {
     "start": "deno serve -A a.ts"
   },

@@ -2,8 +2,7 @@ export { transformContent, type LTR } from "npm:bagancss@^0.0.11";
 //
 export { glob, globSync } from "npm:glob@^11.0.0";
 //
-export { JSDOM } from "npm:jsdom@^24.1.1";
-export type * as Jsdom from "npm:@types/jsdom";
+
 //
 export { Mmmark } from "jsr:@ptm/mm-mark@^0.2.12";
 export * as showdownMathjax from "npm:showdown-mathjax@^1.0.7";
@@ -38,7 +37,10 @@ export {
   Suspense,
   Children,
 } from "jsr:@hono/hono@^4.5.3/jsx";
-export { HtmlEscapedCallbackPhase, type HtmlEscapedString } from "jsr:@hono/hono@^4.5.3/utils/html";
+export {
+  HtmlEscapedCallbackPhase,
+  type HtmlEscapedString,
+} from "jsr:@hono/hono@^4.5.3/utils/html";
 
 /*
     html
