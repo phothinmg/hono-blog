@@ -2,7 +2,7 @@ node_modules
 task
 app
 a.html
-a.task
+a.ts
 aa.xml
 deno.lock
 note.tx
