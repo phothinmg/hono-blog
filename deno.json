@@ -1,7 +1,7 @@
 {
   "$schema": "./deno.schema.json",
   "name": "@ptm/hono-blog",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "exports": "./src/mod.ts",
   "tasks": {
     "start": "deno serve -A a.ts"
