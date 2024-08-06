@@ -10,5 +10,3 @@ ogurl:
 ogtype:
 ogtitle:
 ---
-
-![logo](logo.png)

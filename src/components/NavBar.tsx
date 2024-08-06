@@ -1,17 +1,19 @@
 import { type FC, memo, html } from "../lib/deps.ts";
 import { getMdFiles } from "../lib/routes.ts";
-import { siteName } from "../lib/config.ts";
-const pagesRoute = getMdFiles().pagesroute;
-const pages = pagesRoute.map(
-  (i) =>
-    html`
-      <li>
-        <a href=${i.path}>${i.linkTitle}</a>
-      </li>
-    `
-);
+import type { HonoBlogOptions } from "../lib/configuration.ts";
+import { siteData } from "../lib/config.ts";
 
-export const NavBar: FC = memo(() => {
+export const NavBar: FC<{ options?: HonoBlogOptions }> = memo(({ options }) => {
+  const siteName = siteData(options).siteName;
+  const pagesRoute = getMdFiles(options).pagesroute;
+  const pages = pagesRoute.map(
+    (i) =>
+      html`
+        <li>
+          <a href=${i.path}>${i.linkTitle}</a>
+        </li>
+      `
+  );
   return (
     <header>
       <nav>

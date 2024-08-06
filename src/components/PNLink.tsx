@@ -1,9 +1,14 @@
 import { getMdFiles } from "../lib/routes.ts";
 import { type FC, memo } from "../lib/deps.ts";
 import { type MarkOpts } from "../lib/markdown.ts";
-const postarray = getMdFiles().postsroute;
+import type { HonoBlogOptions } from "../lib/configuration.ts";
 
-export const PNLink: FC<{ title: MarkOpts["title"] }> = memo(({ title }) => {
+export const PNLink: FC<{
+  title: MarkOpts["title"];
+  options?: HonoBlogOptions;
+}> = memo(({ title, options }) => {
+  const postarray = getMdFiles(options).postsroute;
+
   const found = postarray.find((i) => i.linkTitle === title);
   const index = found !== undefined ? postarray.indexOf(found) : -1;
   //const length = postarray.length;

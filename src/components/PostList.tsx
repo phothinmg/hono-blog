@@ -1,11 +1,12 @@
-import { type FC, memo, Hono, html } from "../lib/deps.ts";
+import { type FC, memo, html } from "../lib/deps.ts";
 import { Layout } from "./Layout.tsx";
 import linkArray from "../lib/linkarray.ts";
-const postslist = new Hono();
+import type { HonoBlogOptions } from "../lib/configuration.ts";
 
-const PostCards: FC = memo(() => (
-  <>
-    {linkArray.map(
+export const PostsList: FC<{ options?: HonoBlogOptions }> = memo(
+  ({ options }) => {
+    const linkA = linkArray(options);
+    const cards = linkA.map(
       (i) =>
         html`
           <div class="card">
@@ -30,20 +31,11 @@ const PostCards: FC = memo(() => (
             <p>${i.des ?? " "}</p>
           </div>
         `
-    )}
-  </>
-));
-
-const PostList: FC = memo(() => (
-  <>
-    <Layout seoTitle="All Posts">
-      <PostCards />
-    </Layout>
-  </>
-));
-
-postslist.get("/", (c) => {
-  return c.html(<PostList />);
-});
-
-export default postslist;
+    );
+    return (
+      <Layout options={options} seoTitle="All Posts">
+        {cards}
+      </Layout>
+    );
+  }
+);

@@ -1,39 +1,63 @@
-import config from "../../_config.ts";
+import type { HonoBlogOptions } from "./configuration.ts";
 
-export const siteName = config.siteName ?? "Hono Blog";
+export const siteData = (config?: HonoBlogOptions) => {
+  const siteName = config?.siteName ?? "Hono Blog";
 
-export const siteUrl = config.siteUrl ?? "";
+  const siteUrl = config?.siteUrl ?? "";
 
-export const baseDir = config.baseDir ?? "app";
+  const baseDir = config?.baseDir ?? "app";
 
-export const ignore = config.ignore ?? [];
+  const ignore = config?.ignore ?? [];
 
-export const logo = config.logo ?? "logo.png";
+  const logo = config?.logo ?? "logo.png";
 
-export const bio = config.bio ?? " ";
+  const bio = config?.bio ?? " ";
 
-export const author = config.meta?.author ?? "";
+  const author = config?.meta?.author ?? "";
 
-export const description = config.meta?.description ?? "";
+  const description = config?.meta?.description ?? "";
 
-export const generator = config.meta?.generator ?? false;
+  const generator = config?.meta?.generator ?? false;
 
-export const keywords = config.meta?.keywords ?? [];
+  const keywords = config?.meta?.keywords ?? [];
 
-export const favicon = config.meta?.favicon ?? "";
+  const favicon = config?.meta?.favicon ?? "";
 
-export const ogtitle = config.meta?.ogTitle ?? "";
+  const ogtitle = config?.meta?.ogTitle ?? "";
 
-export const ogimage = config.meta?.ogImage ?? "";
+  const ogimage = config?.meta?.ogImage ?? "";
 
-export const ogtype = config.meta?.ogType ?? "";
+  const ogtype = config?.meta?.ogType ?? "";
 
-export const ogurl = config.meta?.ogUrl ?? "";
+  const ogurl = config?.meta?.ogUrl ?? "";
 
-export const facebook = config.socialLink?.facebook ?? "";
+  const facebook = config?.socialLink?.facebook ?? "";
 
-export const github = config.socialLink?.github ?? "";
+  const github = config?.socialLink?.github ?? "";
 
-export const twitter = config.socialLink?.twitter ?? "";
+  const twitter = config?.socialLink?.twitter ?? "";
 
-export const discord = config.socialLink?.discord ?? "";
+  const discord = config?.socialLink?.discord ?? "";
+
+  return {
+    author,
+    baseDir,
+    bio,
+    description,
+    discord,
+    facebook,
+    favicon,
+    generator,
+    github,
+    ignore,
+    keywords,
+    logo,
+    ogimage,
+    ogtitle,
+    ogtype,
+    ogurl,
+    siteName,
+    siteUrl,
+    twitter,
+  };
+};

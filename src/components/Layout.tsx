@@ -1,18 +1,8 @@
 import { type FC, memo, type PropsWithChildren, html } from "../lib/deps.ts";
 import type { HonoBlogOptions } from "../lib/configuration.ts";
 import { NavBar } from "./NavBar.tsx";
-import {
-  siteName,
-  keywords,
-  generator,
-  description,
-  author,
-  ogtitle,
-  ogimage,
-  ogtype,
-  ogurl,
-  favicon,
-} from "../lib/config.ts";
+import { siteData } from "../lib/config.ts";
+
 import { bundled_css } from "../lib/bundlecss.ts";
 export interface LayoutProps extends PropsWithChildren {
   options?: HonoBlogOptions;
@@ -27,6 +17,7 @@ export interface LayoutProps extends PropsWithChildren {
 
 export const Layout: FC<LayoutProps> = memo(
   ({
+    options,
     seoTitle,
     pageDes,
     pageAuthor,
@@ -36,15 +27,17 @@ export const Layout: FC<LayoutProps> = memo(
     ogUrl,
     children,
   }) => {
-    const title = seoTitle ? siteName + " " + "|" + " " + seoTitle : siteName;
-    const kw = keywords ?? [];
-    const gen = generator ? "Hono" : "";
-    const des = pageDes ? pageDes : description;
-    const aut = pageAuthor ? pageAuthor : author;
-    const ogtit = ogTitle ?? ogtitle;
-    const ogtyp = ogType ?? ogtype;
-    const ogimg = ogImage ?? ogimage;
-    const ogur = ogUrl ?? ogurl;
+    const data = siteData(options);
+    const title = seoTitle
+      ? data.siteName + " " + "|" + " " + seoTitle
+      : data.siteName;
+    const gen = data.generator ? "Hono" : "";
+    const des = pageDes ? pageDes : data.description;
+    const aut = pageAuthor ? pageAuthor : data.author;
+    const ogtit = ogTitle ?? data.ogtitle;
+    const ogtyp = ogType ?? data.ogtype;
+    const ogimg = ogImage ?? data.ogimage;
+    const ogur = ogUrl ?? data.ogurl;
     return (
       <html prefix="og: https://ogp.me/ns#" lang="en">
         <head>
@@ -57,12 +50,12 @@ export const Layout: FC<LayoutProps> = memo(
           <meta name="description" content={des} />
           <meta name="author" content={aut} />
           <meta name="generator" content={gen} />
-          <meta name="keywords" content={kw.join(",")} />
+          <meta name="keywords" content={data.keywords.join(",")} />
           <meta property="og:title" content={ogtit} />
           <meta property="og:type" content={ogtyp} />
           <meta property="og:image" content={ogimg} />
           <meta property="og:url" content={ogur} />
-          <link rel="shortcut icon" href={favicon} type="image/x-icon" />
+          <link rel="shortcut icon" href={data.favicon} type="image/x-icon" />
           <script
             src="https://kit.fontawesome.com/50c925d5df.js"
             crossorigin="anonymous"
@@ -86,7 +79,7 @@ export const Layout: FC<LayoutProps> = memo(
         </head>
         <body>
           <main>
-            <NavBar />
+            <NavBar options={options} />
             {children}
           </main>
           {html`

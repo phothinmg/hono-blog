@@ -1,7 +1,9 @@
 import { mark } from "./markdown.ts";
 import { globSync, path } from "./deps.ts";
 import { getFilename } from "./utils.ts";
-import { baseDir, ignore } from "./config.ts";
+import type { HonoBlogOptions } from "./configuration.ts";
+
+import { siteData } from "./config.ts";
 
 export interface Route {
   path: string;
@@ -18,11 +20,15 @@ export type Routes = Array<Route>;
 export type PageRoutes = Array<PageRoute>;
 export type PostRoutes = Array<PostRoute>;
 //
-export const getMdFiles = (): {
+export const getMdFiles = (
+  options?: HonoBlogOptions
+): {
   indexroute: Routes;
   postsroute: PostRoutes;
   pagesroute: PageRoutes;
 } => {
+  const baseDir = siteData(options).baseDir;
+  const ignore = siteData(options).ignore;
   const cwd = Deno.cwd();
   const appDir = path.join(cwd, baseDir);
   const cssf: string[] = globSync(`${appDir}/**/*.md`, {
@@ -72,13 +78,15 @@ export const getMdFiles = (): {
   return { indexroute, postsroute, pagesroute };
 };
 //
-export const getImgFiles = (): {
+export const getImgFiles = (
+  options?: HonoBlogOptions
+): {
   imgIndexRoute: Routes;
   imgPostRoute: Routes;
   imgPageRoute: Routes;
 } => {
-  // const cwd = Deno.cwd();
-  // const appDir = path.join(cwd, baseDir);
+  const baseDir = siteData(options).baseDir;
+  const ignore = siteData(options).ignore;
   const files: string[] = globSync(
     `${baseDir}/**/*.{png,jpg,svg,gif,jpeg,webp,ico}`,
     {

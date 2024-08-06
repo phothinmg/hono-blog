@@ -1,27 +1,19 @@
-import { type FC, memo, Hono } from "../lib/deps.ts";
+import { type FC, memo } from "../lib/deps.ts";
 import { mark } from "../lib/markdown.ts";
 import { Layout } from "./Layout.tsx";
 import { getMdFiles } from "../lib/routes.ts";
+import type { HonoBlogOptions } from "../lib/configuration.ts";
 
-const homepage = new Hono();
-
-const indexFile = getMdFiles().indexroute[0].fileLoc;
-const html = mark(indexFile).html;
-const inner = { _html: html };
-
-const Home: FC = memo(() => (
-  <>
-    <Layout>
+export const Home: FC<{ options?: HonoBlogOptions }> = memo(({ options }) => {
+  const indexFile = getMdFiles(options).indexroute[0].fileLoc;
+  const html = mark(indexFile).html;
+  const inner = { _html: html };
+  return (
+    <Layout options={options}>
       <div
         class="post-body"
         dangerouslySetInnerHTML={{ __html: inner._html }}
       />
     </Layout>
-  </>
-));
-
-homepage.get("/", (c) => {
-  return c.html(<Home />);
+  );
 });
-
-export default homepage;
