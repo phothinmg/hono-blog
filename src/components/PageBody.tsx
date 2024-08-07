@@ -3,6 +3,7 @@ import { type MarkOpts, mark } from "../lib/markdown.ts";
 import { Layout } from "./Layout.tsx";
 import type { HonoBlogOptions } from "../lib/configuration.ts";
 import { NavBar } from "./NavBar.tsx";
+import { Footer } from "./Footer.tsx";
 export const PageView: FC<{ filePath: string; options?: HonoBlogOptions }> =
   memo(({ filePath, options }) => {
     const opts: MarkOpts = mark(filePath);
@@ -16,6 +17,7 @@ export const PageView: FC<{ filePath: string; options?: HonoBlogOptions }> =
             dangerouslySetInnerHTML={{ __html: inner._html }}
           />
         </div>
+        <Footer options={options} />
       </Layout>
     );
   });

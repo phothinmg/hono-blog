@@ -3,6 +3,7 @@ import { Layout } from "./Layout.tsx";
 import linkArray from "../lib/linkarray.ts";
 import type { HonoBlogOptions } from "../lib/configuration.ts";
 import { NavBar } from "./NavBar.tsx";
+import { Footer } from "./Footer.tsx";
 export const PostsList: FC<{ options?: HonoBlogOptions }> = memo(
   ({ options }) => {
     const linkA = linkArray(options);
@@ -31,6 +32,7 @@ export const PostsList: FC<{ options?: HonoBlogOptions }> = memo(
       <Layout options={options} seoTitle="All Posts">
         <NavBar options={options} />
         {cards}
+        <Footer options={options} />
       </Layout>
     );
   }

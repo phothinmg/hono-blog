@@ -1,7 +1,6 @@
 .blog-nav {
   display: block;
   padding: 10px;
-  font-size: small;
   .left-blog {
     float: left;
     a {
@@ -105,5 +104,26 @@ header {
         font-size: 18px;
       }
     }
+  }
+}
+footer {
+  display: block;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  a {
+    text-decoration: none;
+    color: var(--cfg);
+    margin-right: 10px;
+  }
+  a:hover {
+    cursor: pointer;
+    color: var(--clink);
+  }
+  small {
+    font-weight: 600;
+    margin-right: 10px;
   }
 }

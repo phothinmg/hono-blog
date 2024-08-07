@@ -5,7 +5,6 @@ import { readingTime } from "../lib/utils.ts";
 import { PNLink } from "./PNLink.tsx";
 import type { HonoBlogOptions } from "../lib/configuration.ts";
 import { NavBar } from "./NavBar.tsx";
-
 export const PostView: FC<{ filePath: string; options?: HonoBlogOptions }> =
   memo(({ filePath, options }) => {
     const opts: MarkOpts = mark(filePath);
