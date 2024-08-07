@@ -5,7 +5,11 @@ import { PostView } from "./PostBody.tsx";
 import { PageView } from "./PageBody.tsx";
 import { getMdFiles, getImgFiles } from "../lib/routes.ts";
 import type { HonoBlogOptions } from "../lib/configuration.ts";
-
+/**
+ * Creates a blog application with specified options.
+ * @param options - Optional blog configuration options.
+ * @returns The configured Hono application for the blog.
+ */
 export const blog = (options?: HonoBlogOptions): Hono => {
   const app = new Hono();
   const pa = getMdFiles(options).postsroute;

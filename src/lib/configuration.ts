@@ -18,6 +18,9 @@ export interface HonoBlogOptions {
    * must be like - "app" , not "./app"
    */
   baseDir?: string;
+  /**
+   * Files or Directories want to ignore 
+   */
   ignore?: string[];
   /**
    * Logo for hero section , that will generate favicon.ico if needed.
@@ -46,9 +49,6 @@ export interface HonoBlogOptions {
     keywords?: string[];
     favicon?: string;
     /**
-     * To turn web pages into graph objects, need to add basic metadata to the page.
-     */
-    /**
      *  The title of the object as it should appear within the graph
      */
     ogTitle?: string;
@@ -65,6 +65,9 @@ export interface HonoBlogOptions {
      */
     ogUrl?: string;
   };
+  /**
+   * Social profile links
+   */
   socialLink?: {
     facebook?: string;
     github?: string;
