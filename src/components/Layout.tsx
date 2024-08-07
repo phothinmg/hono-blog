@@ -63,7 +63,7 @@ export const Layout: FC<LayoutProps> = memo(
           ></link>
           <link
             rel="stylesheet"
-            href="https://cdn.jsdelivr.net/gh/phothinmg/master-repo@main/add-on.min.css"
+            href="https://cdn.jsdelivr.net/gh/phothinmg/master-repo@main/addon.min.css"
           ></link>
           <link
             rel="stylesheet"
