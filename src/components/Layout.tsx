@@ -1,15 +1,7 @@
-import {
-  type FC,
-  memo,
-  type PropsWithChildren,
-  html,
-  css,
-  Style,
-} from "../lib/deps.ts";
+import { type FC, memo, type PropsWithChildren, html } from "../lib/deps.ts";
 import type { HonoBlogOptions } from "../lib/configuration.ts";
-import { NavBar } from "./NavBar.tsx";
 import { siteData } from "../lib/config.ts";
-
+import { bundled_css } from "../style/bundlecss.ts";
 export interface LayoutProps extends PropsWithChildren {
   options?: HonoBlogOptions;
   seoTitle?: string;
@@ -81,101 +73,10 @@ export const Layout: FC<LayoutProps> = memo(
           <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
           <script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
           <title>{title}</title>
-          <Style>
-            {css`
-              .blog-nav {
-                padding: 10px;
-                font-size: small;
-                display: block;
-              }
-              .blog-nav .left-blog {
-                float: left;
-              }
-              .blog-nav .left-blog a {
-                color: var(--cfg);
-                text-decoration: none;
-              }
-              .blog-nav .left-blog a i {
-                margin-right: 18px;
-              }
-              .blog-nav .left-blog a:hover {
-                cursor: pointer;
-                color: var(--clink);
-              }
-              .blog-nav .right-blog {
-                float: right;
-              }
-              .blog-nav .right-blog a {
-                color: var(--cfg);
-                text-decoration: none;
-              }
-              .blog-nav .right-blog a i {
-                margin-left: 18px;
-              }
-              .blog-nav .right-blog a:hover {
-                cursor: pointer;
-                color: var(--clink);
-              }
-              .post {
-                display: block;
-              }
-              .post div.post-head {
-                text-align: center;
-                border-bottom: 0.5px solid var(--cmed);
-                padding: 5px;
-              }
-              .post div.post-head small {
-                margin-right: 27px;
-                font-style: italic;
-                font-weight: 600;
-              }
-              .post div.post-body {
-                padding: 5px;
-                display: contents;
-              }
-              .post div.post-body p {
-                text-align: justify;
-                text-indent: 36px;
-              }
-              .post div.post-body img {
-                border-radius: 10px;
-                width: 100%;
-                height: 100px;
-              }
-              .nav-link {
-                color: var(--cfg);
-                text-decoration: none;
-              }
-              .tb {
-                cursor: pointer;
-                background-color: transparent;
-                border: none;
-              }
-              .badge {
-                background-color: var(--cfg);
-                color: var(--cbg);
-                text-align: center;
-                border-radius: 5px;
-                padding: 4px 8px;
-                font-size: x-small;
-              }
-              .head-small {
-                margin-right: 18px;
-                font-style: italic;
-                font-weight: 600;
-              }
-              .post-link {
-                color: var(--cfg);
-                text-decoration: none;
-              }
-            `}
-          </Style>
+          <style>{bundled_css}</style>
         </head>
         <body>
-          <main>
-            <NavBar options={options} />
-            {children}
-          </main>
+          <main>{children}</main>
           {html`
             <script>
               hljs.addPlugin(

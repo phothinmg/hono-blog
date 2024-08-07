@@ -35,9 +35,11 @@
 .post {
   display: block;
   div.post-head {
-    padding: 5px;
-    text-align: center;
-    border-bottom: 0.5px solid var(--cmed);
+    padding-bottom: 5px;
+    border-bottom: 0.5px double var(--cfg);
+    h5 {
+      font-weight: 600;
+    }
     small {
       font-style: italic;
       font-weight: 600;
@@ -47,6 +49,14 @@
   div.post-body {
     display: contents;
     padding: 5px;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-top: 18px;
+    }
     p {
       text-align: justify;
       text-indent: 36px;
@@ -59,34 +69,41 @@
   }
 }
 
-/*  */
-.nav-link {
-  text-decoration: none;
-  color: var(--cfg);
+div.card {
+  a {
+    text-decoration: none;
+    color: var(--cfg);
+  }
+  a:hover {
+    cursor: pointer;
+    color: var(--clink);
+  }
+  small {
+    font-style: italic;
+    font-weight: 600;
+    margin-right: 18px;
+  }
 }
 
-.tb {
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-}
-
-.badge {
-  background-color: var(--cfg);
-  color: var(--cbg);
-  padding: 4px 8px;
-  text-align: center;
-  border-radius: 5px;
-  font-size: x-small;
-}
-
-.head-small {
-  font-style: italic;
-  font-weight: 600;
-  margin-right: 18px;
-}
-
-.post-link {
-  text-decoration: none;
-  color: var(--cfg);
+header {
+  nav {
+    ul {
+      li {
+        a {
+          text-decoration: none;
+          color: var(--cfg);
+        }
+        a:hover {
+          cursor: pointer;
+          color: var(--clink);
+        }
+      }
+      li[type="button"] {
+        cursor: pointer;
+        border: none;
+        background-color: transparent;
+        font-size: 18px;
+      }
+    }
+  }
 }

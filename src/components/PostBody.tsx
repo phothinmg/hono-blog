@@ -4,6 +4,7 @@ import { Layout } from "./Layout.tsx";
 import { readingTime } from "../lib/utils.ts";
 import { PNLink } from "./PNLink.tsx";
 import type { HonoBlogOptions } from "../lib/configuration.ts";
+import { NavBar } from "./NavBar.tsx";
 
 export const PostView: FC<{ filePath: string; options?: HonoBlogOptions }> =
   memo(({ filePath, options }) => {
@@ -25,9 +26,10 @@ export const PostView: FC<{ filePath: string; options?: HonoBlogOptions }> =
         ogType={opts.ogtype}
         ogUrl={opts.ogurl}
       >
+        <NavBar options={options} />
         <div class="post">
           <div class="post-head">
-            <h3>{opts.title}</h3>
+            <h1>{opts.title}</h1>
             <small>{opts.date}</small>
             <small>{`Reading Time: ${rt}  minutes`}</small>
             <br />

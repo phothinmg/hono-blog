@@ -64,14 +64,13 @@ export interface HonoBlogOptions {
      * The canonical URL of your object that will be used as its permanent ID in the graph
      */
     ogUrl?: string;
-    /**
-     * For hero section of home page.
-     */
   };
   socialLink?: {
     facebook?: string;
     github?: string;
     twitter?: string;
     discord?: string;
+    linkedin?: string;
+    mastodon?: string;
   };
 }

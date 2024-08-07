@@ -24,7 +24,7 @@ export const NavBar: FC<{ options?: HonoBlogOptions }> = memo(({ options }) => {
             </a>
           </li>
           <li
-            class="float-right tb"
+            class="float-right"
             type="button"
             data-theme-toggle
             style="font-size: 18px;"

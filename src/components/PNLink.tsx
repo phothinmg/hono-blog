@@ -1,6 +1,6 @@
 import { getMdFiles } from "../lib/routes.ts";
 import { type FC, memo } from "../lib/deps.ts";
-import { type MarkOpts } from "../lib/markdown.ts";
+import type { MarkOpts } from "../lib/markdown.ts";
 import type { HonoBlogOptions } from "../lib/configuration.ts";
 
 export const PNLink: FC<{

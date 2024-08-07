@@ -39,6 +39,10 @@ export const siteData = (config?: HonoBlogOptions) => {
 
   const discord = config?.socialLink?.discord ?? "";
 
+  const mastodon = config?.socialLink?.mastodon ?? "";
+
+  const linkedin = config?.socialLink?.linkedin ?? "";
+
   return {
     author,
     baseDir,
@@ -59,5 +63,7 @@ export const siteData = (config?: HonoBlogOptions) => {
     siteName,
     siteUrl,
     twitter,
+    mastodon,
+    linkedin,
   };
 };

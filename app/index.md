@@ -2,5 +2,4 @@
 type: "index"
 title: "Home"
 ---
-
-# Home Page
+###  Home Page
