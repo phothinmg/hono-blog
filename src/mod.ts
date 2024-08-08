@@ -2,7 +2,8 @@ import type { HonoBlogOptions } from "./lib/configuration.ts";
 import { honoblog } from "./components/mod.tsx";
 import type { Hono } from "./lib/deps.ts";
 /**
- * Creates a blog application with specified options.
+ * **Creates a blog application with specified options.**
+ * 
  * @param options - Optional blog configuration options.
  * @returns The configured Hono application for the blog.
  * 
