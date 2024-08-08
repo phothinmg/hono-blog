@@ -1,16 +1,17 @@
-import { Hono, serveStatic } from "../lib/deps.ts";
+import { Hono, serveStatic, compress, cors, csrf } from "../lib/deps.ts";
 import { Home } from "./Home.tsx";
 import { PostsList } from "./PostList.tsx";
 import { PostView } from "./PostBody.tsx";
 import { PageView } from "./PageBody.tsx";
 import { getMdFiles, getImgFiles } from "../lib/routes.ts";
 import type { HonoBlogOptions } from "../lib/configuration.ts";
+
 /**
  * Creates a blog application with specified options.
  * @param options - Optional blog configuration options.
  * @returns The configured Hono application for the blog.
  */
-export const blog = (options?: HonoBlogOptions): Hono => {
+export const honoblog = (options?: HonoBlogOptions): Hono => {
   const app = new Hono();
   const pa = getMdFiles(options).postsroute;
   const pages = getMdFiles(options).pagesroute;
@@ -18,7 +19,9 @@ export const blog = (options?: HonoBlogOptions): Hono => {
   const pageImage = getImgFiles(options).imgPageRoute;
   const indexImage = getImgFiles(options).imgIndexRoute;
   const imageRoutes = [...indexImage, ...pageImage, ...postImage];
-
+  app.use(compress());
+  app.use(cors());
+  app.use(csrf());
   app.get("/", (c) => {
     return c.html(<Home options={options} />);
   });

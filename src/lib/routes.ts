@@ -11,10 +11,10 @@ export interface Route {
 }
 export interface PageRoute extends Route {
   linkTitle: string;
+  f_name: string;
 }
 export interface PostRoute extends PageRoute {
   birthtime: Date | null;
-  f_name: string;
 }
 export type Routes = Array<Route>;
 export type PageRoutes = Array<PageRoute>;
@@ -46,6 +46,7 @@ export const getMdFiles = (
         path: `/${type}s/${fn}`,
         fileLoc: filePath,
         linkTitle: title,
+        f_name: fn,
       };
       const post_route = {
         path: `/${type}s/${fn}`,

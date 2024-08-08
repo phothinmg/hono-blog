@@ -9,4 +9,9 @@ export {
 } from "jsr:@hono/hono@^4.5.3/jsx";
 export { html, raw } from "jsr:@hono/hono@^4.5.3/html";
 export { serveStatic } from "jsr:@hono/hono@^4.5.3/deno";
+export { compress } from "jsr:@hono/hono@^4.5.3/compress";
+export { cors } from "jsr:@hono/hono@^4.5.3/cors";
+export { csrf } from "jsr:@hono/hono@^4.5.3/csrf";
+export { logger } from "jsr:@hono/hono@^4.5.3/logger";
+
 export * as path from "jsr:@std/path@^1.0.2";

@@ -1,2 +1,8 @@
-export * from "./components/mod.tsx";
-export type { HonoBlogOptions } from "./lib/configuration.ts";
+import type { HonoBlogOptions } from "./lib/configuration.ts";
+import { honoblog } from "./components/mod.tsx";
+
+export const blog = (options: HonoBlogOptions) => {
+  return honoblog(options);
+};
+
+export type { HonoBlogOptions };
