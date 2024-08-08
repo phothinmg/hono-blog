@@ -102,9 +102,6 @@ ogtitle:
 ###  Hello World!!
 `;
 
-const FAVICON = "favicon.ico";
-const FAVICON_ICO = Deno.readFileSync("favicon.ico");
-
 async function init(directory: string) {
   directory = path.resolve(directory);
   console.log(`Initializing blog in ${directory}...`);
@@ -136,7 +133,6 @@ async function init(directory: string) {
     path.join(directory, `app/${PAGE_MD}`),
     PAGE_MD_CONTENT
   );
-  await Deno.writeFile(path.join(directory, `app/${FAVICON}`), FAVICON_ICO);
   await Deno.writeTextFile(path.join(directory, CONFIG_FILE), CONFIG_CONTENT);
   await Deno.writeTextFile(path.join(directory, DENO_JSON), DENO_JSON_CONTENT);
 }
