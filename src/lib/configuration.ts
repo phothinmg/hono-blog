@@ -23,14 +23,6 @@ export interface HonoBlogOptions {
    */
   ignore?: string[];
   /**
-   * Logo for hero section , that will generate favicon.ico if needed.
-   */
-  logo?: string;
-  /**
-   * A brief description of the blog
-   */
-  bio?: string;
-  /**
    * Common html meta tags
    */
   meta?: {

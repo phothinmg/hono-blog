@@ -9,10 +9,6 @@ export const siteData = (config?: HonoBlogOptions) => {
 
   const ignore = config?.ignore ?? [];
 
-  const logo = config?.logo ?? "logo.png";
-
-  const bio = config?.bio ?? " ";
-
   const author = config?.meta?.author ?? "";
 
   const description = config?.meta?.description ?? "";
@@ -46,7 +42,6 @@ export const siteData = (config?: HonoBlogOptions) => {
   return {
     author,
     baseDir,
-    bio,
     description,
     discord,
     facebook,
@@ -55,7 +50,6 @@ export const siteData = (config?: HonoBlogOptions) => {
     github,
     ignore,
     keywords,
-    logo,
     ogimage,
     ogtitle,
     ogtype,
