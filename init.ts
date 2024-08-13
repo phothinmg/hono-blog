@@ -46,19 +46,19 @@ export default app;
 
 `;
 
-const DENO_JSON = "deno.json";
-const DENO_JSON_CONTENT = `
-{
-  "tasks": {
-    "start": "deno serve -A mod.ts"
-  },
-  "compilerOptions": {
-    "jsx": "precompile",
-    "jsxImportSource": "@hono/hono/jsx"
-  }
-}
+// const DENO_JSON = "deno.json";
+// const DENO_JSON_CONTENT = `
+// {
+//   "tasks": {
+//     "start": "deno serve -A mod.ts"
+//   },
+//   "compilerOptions": {
+//     "jsx": "precompile",
+//     "jsxImportSource": "@hono/hono/jsx"
+//   }
+// }
 
-`;
+// `;
 
 const INDEX_MD = "index.md";
 const INDEX_MD_CONTENT = `
@@ -101,7 +101,6 @@ ogtitle:
 `;
 
 async function init(directory: string) {
-  const start = performance.now();
   directory = path.resolve(directory);
   // console.log(`Create blog at ${directory}...`);
   await $`echo ${tcolor.green(tcolor.bold(`Create Blog at ${directory}...`))}`;
@@ -137,26 +136,7 @@ async function init(directory: string) {
     PAGE_MD_CONTENT,
   );
   await Deno.writeTextFile(path.join(directory, CONFIG_FILE), CONFIG_CONTENT);
-  await Deno.writeTextFile(path.join(directory, DENO_JSON), DENO_JSON_CONTENT);
-  setTimeout(async () => {
-    await $`echo ${
-      tcolor.italic(
-        tcolor.green(`Installing depencities............`),
-      )
-    }`;
-    await $`deno add @ptm/hono-blog`;
-    setTimeout(async () => {
-      await $`deno add @hono/hono`;
-    }, 1000);
-  }, 1000);
-  const end = performance.now();
-  const tim = Math.floor(end - start);
-  await $`echo ${tcolor.green(`Done in ${format(tim)}`)}`;
-  await $`echo Run ${
-    tcolor.bgBrightGreen(
-      tcolor.white(`deno task start`),
-    )
-  } to start Blog.`;
+  // await Deno.writeTextFile(path.join(directory, DENO_JSON), DENO_JSON_CONTENT);
 }
 
 function printHelp() {
@@ -172,8 +152,27 @@ if (import.meta.main) {
   if (directory == null) {
     printHelp();
   }
-
+  const start = performance.now();
   await init(directory);
+  setTimeout(async () => {
+    await $`echo ${
+      tcolor.italic(
+        tcolor.green(`Installing depencities............`),
+      )
+    }`;
+    await $`deno add @ptm/hono-blog`;
+    setTimeout(async () => {
+      await $`deno add @hono/hono`;
+    }, 1000);
+  }, 1000);
+  const end = performance.now();
+  const tim = Math.floor(end - start);
+  await $`echo ${tcolor.green(`Done in ${format(tim)}`)}`;
+  await $`echo Run ${
+    tcolor.bgBlack(
+      tcolor.white(`deno task start`),
+    )
+  } to start Blog.`;
 } else {
   throw new Error("This module is meant to be executed as a CLI.");
 }
