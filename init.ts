@@ -1,4 +1,6 @@
-import { path } from "./src/lib/deps.ts";
+#!/usr/bin/env -S deno run --allow-all
+
+import { $, format, path, tcolor } from "./src/lib/deps.ts";
 
 const CURRENT_DATE = new Date();
 const CURRENT_DATE_STRING = CURRENT_DATE.toISOString().slice(0, 10);
@@ -50,13 +52,9 @@ const DENO_JSON_CONTENT = `
   "tasks": {
     "start": "deno serve -A mod.ts"
   },
-  "imports": {
-    "@hono/hono": "jsr:@hono/hono@^4.5.4",
-    "@ptm/hono-blog": "jsr:@ptm/hono-blog@^0.0.5"
-  },
   "compilerOptions": {
     "jsx": "precompile",
-    "jsxImportSource": "jsr:@hono/hono@^4.5.4/jsx"
+    "jsxImportSource": "@hono/hono/jsx"
   }
 }
 
@@ -105,15 +103,18 @@ ogtitle:
 async function init(directory: string) {
   const start = performance.now();
   directory = path.resolve(directory);
-  console.log(`Create blog at ${directory}...`);
+  // console.log(`Create blog at ${directory}...`);
+  await $`echo ${tcolor.green(tcolor.bold(`Create blog at ${directory}...`))}`;
   try {
     const dir = [...Deno.readDirSync(directory)];
     if (dir.length > 0) {
       const confirmed = confirm(
-        "You are trying to initialize blog in an non-empty directory, do you want to continue?"
+        tcolor.magenta(
+          "You are trying to initialize blog in an non-empty directory, do you want to continue?",
+        ),
       );
       if (!confirmed) {
-        throw new Error("Directory is not empty, aborting.");
+        throw new Error(tcolor.red("Directory is not empty, aborting."));
       }
     }
   } catch (err) {
@@ -121,25 +122,40 @@ async function init(directory: string) {
       throw err;
     }
   }
+  await Deno.writeTextFile(path.join(directory, CONFIG_FILE), CONFIG_CONTENT);
+  await Deno.writeTextFile(path.join(directory, DENO_JSON), DENO_JSON_CONTENT);
   await Deno.mkdir(path.join(directory, "app"), { recursive: true });
   await Deno.writeTextFile(
     path.join(directory, `app/${INDEX_MD}`),
-    INDEX_MD_CONTENT
+    INDEX_MD_CONTENT,
   );
   await Deno.writeTextFile(
     path.join(directory, `app/${POST_MD}`),
-    POST_MD_CONTENT
+    POST_MD_CONTENT,
   );
   await Deno.writeTextFile(
     path.join(directory, `app/${PAGE_MD}`),
-    PAGE_MD_CONTENT
+    PAGE_MD_CONTENT,
   );
-  await Deno.writeTextFile(path.join(directory, CONFIG_FILE), CONFIG_CONTENT);
-  await Deno.writeTextFile(path.join(directory, DENO_JSON), DENO_JSON_CONTENT);
+  setTimeout(async () => {
+    await $`${
+      tcolor.italic(
+        tcolor.green(`echo Installing depencities............`),
+      )
+    }`;
+    await $`deno add @ptm/hono-blog`;
+    setTimeout(async () => {
+      await $`deno add @hono/hono`;
+    }, 1000);
+  }, 1000);
   const end = performance.now();
-  console.log(
-    `Done in ${end - start} ms. \` deno task start\` to start the blog.`
-  );
+  const tim = Math.floor(end - start);
+  await $`echo ${tcolor.green(`Done in ${format(tim)}`)}`;
+  await $`echo Run ${
+    tcolor.bgBrightGreen(
+      tcolor.white(`deno task start`),
+    )
+  } to start Blog.`;
 }
 
 function printHelp() {

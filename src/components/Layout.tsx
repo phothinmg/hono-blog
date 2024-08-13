@@ -71,7 +71,10 @@ export const Layout: FC<LayoutProps> = memo(
             href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap"
             rel="stylesheet"
           />
-          <link rel="stylesheet" href="index.css" />
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/phothinmg/master-repo@main/honoblog/index.min.css"
+          />
           <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
           <script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
           <title>{title}</title>

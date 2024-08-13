@@ -1,12 +1,5 @@
 {
-    "deno.enable": true,
-    "cSpell.words": [
-        "bagancss",
-        "bamarmark",
-        "csscode",
-        "fdata",
-        "iuri",
-        "mmmark",
-        "Yamanya"
-    ]
+  "deno.enable": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "denoland.vscode-deno"
 }
