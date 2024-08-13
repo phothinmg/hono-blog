@@ -8,11 +8,11 @@ import { NavBar } from "./NavBar.tsx";
 export const PostView: FC<{ filePath: string; options?: HonoBlogOptions }> =
   memo(({ filePath, options }) => {
     const opts: MarkOpts = mark(filePath);
-    const rt = readingTime(opts.html);
+    const _rt = readingTime(opts.html);
     const badges =
       Array.isArray(opts.tags) &&
       opts.tags.map((i) => {
-        return html`<small>${i}</small>`;
+        return html`<small class="chip">${i}</small>`;
       });
     const inner = { _html: opts.html };
     return (
@@ -29,10 +29,9 @@ export const PostView: FC<{ filePath: string; options?: HonoBlogOptions }> =
         <div class="post">
           <div class="post-head">
             <h1>{opts.title}</h1>
-            <small>{opts.date}</small>
-            <small>{`Reading Time: ${rt}  minutes`}</small>
-            <br />
+            <p>{opts.date}</p>
             {badges}
+            <img src={opts.cover_photo} alt="cover_photo" />
           </div>
           <div
             class="post-body"

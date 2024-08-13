@@ -43,5 +43,9 @@ export const honoblog = (options?: HonoBlogOptions): Hono => {
   imageRoutes.map((i) => {
     return app.use(i.path, serveStatic({ path: i.fileLoc }));
   });
+  // Css roures
+  app.use("/index.css", serveStatic({ path: "./src/index.css" }));
+  app.use("/posts/index.css", serveStatic({ path: "./src/index.css" }));
+  app.use("/pages/index.css", serveStatic({ path: "./src/index.css" }));
   return app;
 };

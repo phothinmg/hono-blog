@@ -103,8 +103,9 @@ ogtitle:
 `;
 
 async function init(directory: string) {
+  const start = performance.now();
   directory = path.resolve(directory);
-  console.log(`Initializing blog in ${directory}...`);
+  console.log(`Create blog at ${directory}...`);
   try {
     const dir = [...Deno.readDirSync(directory)];
     if (dir.length > 0) {
@@ -135,6 +136,10 @@ async function init(directory: string) {
   );
   await Deno.writeTextFile(path.join(directory, CONFIG_FILE), CONFIG_CONTENT);
   await Deno.writeTextFile(path.join(directory, DENO_JSON), DENO_JSON_CONTENT);
+  const end = performance.now();
+  console.log(
+    `Done in ${end - start} ms. \` deno task start\` to start the blog.`
+  );
 }
 
 function printHelp() {

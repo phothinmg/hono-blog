@@ -7,31 +7,33 @@ import { Footer } from "./Footer.tsx";
 export const PostsList: FC<{ options?: HonoBlogOptions }> = memo(
   ({ options }) => {
     const linkA = linkArray(options);
-    const cards = linkA.map(
-      (i) =>
-        html`
-          <div class="card">
-            <a href=${i.path}>
-              <h3>${i.title}</h3>
-            </a>
-            <small>${i.date}</small>
-            <small>${i.readingTime}</small>
-            <br />
-            <br />
-            ${Array.isArray(i.tags)
-              ? i.tags.map((tag) => html`<small>${tag}</small>`)
-              : ""}
-            <br />
-            <br />
-            <hr />
-            <p>${i.des ?? " "}</p>
-          </div>
-        `
-    );
+    // const cards = linkA.map(
+    //   (i) =>
+    //     html`
+    //       <div>
+    //         <ol>
+    //           <li class="post-title">
+    //             <a href=${i.path} style="margin-right: 10px">${i.title}</a>
+    //             <small>${i.date}</small>
+    //           </li>
+    //         </ol>
+    //       </div>
+    //     `
+    // );
     return (
       <Layout options={options} seoTitle="All Posts">
         <NavBar options={options} />
-        {cards}
+        <h3 class="post-title">All Posts</h3>
+        <ol>
+          {linkA.map(
+            (i) => html`
+              <li class="post-title">
+                <a href=${i.path} style="margin-right: 10px">${i.title}</a>
+                <small>${i.date}</small>
+              </li>
+            `
+          )}
+        </ol>
         <Footer options={options} />
       </Layout>
     );
