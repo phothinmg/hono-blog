@@ -104,7 +104,7 @@ async function init(directory: string) {
   const start = performance.now();
   directory = path.resolve(directory);
   // console.log(`Create blog at ${directory}...`);
-  await $`echo ${tcolor.green(tcolor.bold(`Create blog at ${directory}...`))}`;
+  await $`echo ${tcolor.green(tcolor.bold(`Create Blog at ${directory}...`))}`;
   try {
     const dir = [...Deno.readDirSync(directory)];
     if (dir.length > 0) {
@@ -122,8 +122,7 @@ async function init(directory: string) {
       throw err;
     }
   }
-  await Deno.writeTextFile(path.join(directory, CONFIG_FILE), CONFIG_CONTENT);
-  await Deno.writeTextFile(path.join(directory, DENO_JSON), DENO_JSON_CONTENT);
+
   await Deno.mkdir(path.join(directory, "app"), { recursive: true });
   await Deno.writeTextFile(
     path.join(directory, `app/${INDEX_MD}`),
@@ -137,10 +136,12 @@ async function init(directory: string) {
     path.join(directory, `app/${PAGE_MD}`),
     PAGE_MD_CONTENT,
   );
+  await Deno.writeTextFile(path.join(directory, CONFIG_FILE), CONFIG_CONTENT);
+  await Deno.writeTextFile(path.join(directory, DENO_JSON), DENO_JSON_CONTENT);
   setTimeout(async () => {
-    await $`${
+    await $`echo ${
       tcolor.italic(
-        tcolor.green(`echo Installing depencities............`),
+        tcolor.green(`Installing depencities............`),
       )
     }`;
     await $`deno add @ptm/hono-blog`;
