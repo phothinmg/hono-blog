@@ -23,7 +23,7 @@ Print this message:
 
 const CONFIG_FILE = "mod.ts";
 const CONFIG_CONTENT = `
-import { blog } from "@ptm/hono-blog";
+import { blog } from "hono-blog";
 
 const app = blog({
  siteName: "My Blog",
@@ -32,7 +32,6 @@ const app = blog({
   author: "John Doe",
   description: "Hono Blog Template with Deno",
   keywords: ["hono", "deno", "blog"],
-  favicon: "favicon.ico",
   ogType: "website",
  },
   socialLink: {
@@ -46,19 +45,24 @@ export default app;
 
 `;
 
-// const DENO_JSON = "deno.json";
-// const DENO_JSON_CONTENT = `
-// {
-//   "tasks": {
-//     "start": "deno serve -A mod.ts"
-//   },
-//   "compilerOptions": {
-//     "jsx": "precompile",
-//     "jsxImportSource": "@hono/hono/jsx"
-//   }
-// }
+const DENO_JSON = "deno.json";
+const DENO_JSON_CONTENT = `
+{
+  "$schema": "https://img.phothin.dev/deno.schema.json",
+  "tasks": {
+    "start": "deno serve -A mod.ts"
+  },
+    "imports": {
+    "hono": "jsr:@hono/hono",
+    "hono-blog": "jsr:@ptm/hono-blog"
+  },
+  "compilerOptions": {
+    "jsx": "precompile",
+    "jsxImportSource": "hono/jsx"
+  }
+}
 
-// `;
+`;
 
 const INDEX_MD = "index.md";
 const INDEX_MD_CONTENT = `
@@ -95,14 +99,18 @@ tags:
 ogurl:
 ogtype:
 ogtitle:
+cover_photo: "https://imagedelivery.net/6bSk6wUa9UOwEesJAZQuoA/93d02944-6c14-4671-aacc-a2f53691b200/public"
 ---
 
-###  Hello World!!
+###  Eo tactu at illud ad terra
+
+Vidi addi hic dat etsi solo pla lor. Se judicare posuisse eo occurret de lectorum du adipisci infiniti. 
+Nexum culpa oculi si in cogor demus nulli. Eidem ita tur dubie etiam. Co multarum an at impellit inanimes quidquid siquidem. 
+Ipsos ullum ullam ii ea. An praestare cupientem reliquiae to admiserim co ac recurrunt obdormiam. Et ii paulo color mo atque serie to.
 `;
 
 async function init(directory: string) {
   directory = path.resolve(directory);
-  // console.log(`Create blog at ${directory}...`);
   await $`echo ${tcolor.green(tcolor.bold(`Create Blog at ${directory}...`))}`;
   try {
     const dir = [...Deno.readDirSync(directory)];
@@ -136,7 +144,7 @@ async function init(directory: string) {
     PAGE_MD_CONTENT,
   );
   await Deno.writeTextFile(path.join(directory, CONFIG_FILE), CONFIG_CONTENT);
-  // await Deno.writeTextFile(path.join(directory, DENO_JSON), DENO_JSON_CONTENT);
+  await Deno.writeTextFile(path.join(directory, DENO_JSON), DENO_JSON_CONTENT);
 }
 
 function printHelp() {
@@ -154,22 +162,11 @@ if (import.meta.main) {
   }
   const start = performance.now();
   await init(directory);
-  setTimeout(async () => {
-    await $`echo ${
-      tcolor.italic(
-        tcolor.green(`Installing depencities............`),
-      )
-    }`;
-    await $`deno add @ptm/hono-blog`;
-    setTimeout(async () => {
-      await $`deno add @hono/hono`;
-    }, 1000);
-  }, 1000);
   const end = performance.now();
   const tim = Math.floor(end - start);
   await $`echo ${tcolor.green(`Done in ${format(tim)}`)}`;
   await $`echo Run ${
-    tcolor.bgBlack(
+    tcolor.bgBrightMagenta(
       tcolor.white(`deno task start`),
     )
   } to start Blog.`;

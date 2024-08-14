@@ -1,7 +1,7 @@
 export { glob, globSync } from "npm:glob@^11.0.0";
 export { Mmmark } from "jsr:@ptm/mm-mark@^0.2.12";
 export * as showdownMathjax from "npm:showdown-mathjax@^1.0.7";
-export { $ } from "jsr:@david/dax@^0.41.0";
+export { $, CommandBuilder } from "jsr:@david/dax@^0.41.0";
 export { Hono, type HonoRequest } from "jsr:@hono/hono@^4.5.3";
 export {
   type FC,
