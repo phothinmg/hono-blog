@@ -19,9 +19,15 @@ export interface PostRoute extends PageRoute {
 export type Routes = Array<Route>;
 export type PageRoutes = Array<PageRoute>;
 export type PostRoutes = Array<PostRoute>;
-//
+
+/**
+ * Retrieves markdown files based on the provided options.
+ *
+ * @param options - The options for retrieving markdown files.
+ * @returns An object containing index routes, post routes, and page routes.
+ */
 export const getMdFiles = (
-  options?: HonoBlogOptions
+  options?: HonoBlogOptions,
 ): {
   indexroute: Routes;
   postsroute: PostRoutes;
@@ -78,9 +84,14 @@ export const getMdFiles = (
   });
   return { indexroute, postsroute, pagesroute };
 };
-//
+/**
+ * Retrieves image files based on the provided options.
+ *
+ * @param options - The HonoBlogOptions to customize the image retrieval process.
+ * @returns An object containing routes for image index, posts, and pages.
+ */
 export const getImgFiles = (
-  options?: HonoBlogOptions
+  options?: HonoBlogOptions,
 ): {
   imgIndexRoute: Routes;
   imgPostRoute: Routes;
@@ -92,7 +103,7 @@ export const getImgFiles = (
     `${baseDir}/**/*.{png,jpg,svg,gif,jpeg,webp,ico}`,
     {
       ignore: ["node_modules", ...ignore],
-    }
+    },
   );
 
   const imgIndexRoute: Routes = [];

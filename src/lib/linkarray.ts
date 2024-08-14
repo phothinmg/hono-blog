@@ -12,7 +12,12 @@ export interface LinkArrayType {
   des: string | undefined;
   fname: string | undefined;
 }
-
+/**
+ * Generates an array of objects representing links with specific properties.
+ *
+ * @param options - Optional HonoBlogOptions for customization.
+ * @returns An array of LinkArrayType objects containing path, title, date, reading time, tags, description, and file name.
+ */
 export default function linkArray(options?: HonoBlogOptions) {
   const postRoutes = getMdFiles(options).postsroute;
   const linkA: Array<LinkArrayType> = [];

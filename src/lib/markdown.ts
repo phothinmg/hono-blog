@@ -1,5 +1,8 @@
 import { Mmmark } from "./deps.ts";
 import { readFile } from "./utils.ts";
+/**
+ * Yaml frontmatter of markdown document.
+ */
 export interface AttrsPost {
   type: "page" | "post" | "index";
   title: string;
@@ -16,6 +19,13 @@ export interface AttrsPost {
 export interface MarkOpts extends AttrsPost {
   html: string;
 }
+
+/**
+ * Reads a markdown file from the specified path, converts it to HTML using Mmmark with specified extensions,
+ * and returns an object containing the parsed attributes and HTML content.
+ * @param filePath - The path to the markdown file to be processed.
+ * @returns An object with attributes like type, title, date, author, description, tags, ogimage, ogurl, ogtype, ogtitle, html, and cover_photo.
+ */
 export function mark(filePath: string): MarkOpts {
   const tx: string = readFile(filePath);
   const c = new Mmmark.ConvertMd<AttrsPost>(tx, {

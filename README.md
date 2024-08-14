@@ -16,21 +16,23 @@ deno run -A https://deno.land/x/honoblog/init.ts  "./directory/for/blog/"
 
 ```json
 {
+  "$schema": "https://img.phothin.dev/deno.schema.json",
   "tasks": {
     "start": "deno serve -A mod.ts"
   },
   "imports": {
-    "@hono/hono": "jsr:@hono/hono@^4.5.4",
-    "@ptm/hono-blog": "jsr:@ptm/hono-blog@^0.0.5"
+    "hono": "jsr:@hono/hono",
+    "hono-blog": "jsr:@ptm/hono-blog"
   },
   "compilerOptions": {
     "jsx": "precompile",
-    "jsxImportSource": "jsr:@hono/hono@^4.5.4/jsx"
+    "jsxImportSource": "hono/jsx"
   }
 }
 ```
 
-Check and update version of @hono/hono at https://jsr.io/@hono/hono and @ptm/hono-blog at https://jsr.io/@ptm/hono-blog
+More info at @hono/hono at https://jsr.io/@hono/hono and @ptm/hono-blog at
+https://jsr.io/@ptm/hono-blog
 
 ### 4. Configuration
 
@@ -50,18 +52,21 @@ export default app;
 
 - siteName?: Name of Blog
 - siteUrl?: The URL of blog, after deployed
-- baseDir?: The directory that contain all of source file of blog. must be like - "app" , not "./app", default "app".
+- baseDir?: The directory that contain all of source file of blog. must be
+  like - "app" , not "./app", default "app".
 - ignore?: Files or Directories want to ignore.
 - meta:
   - author?: The name of the blog author
   - description?: A short and accurate summary of the content of the page.
-  - generator?: The identifier of the software that generated the page, if true generator name will "Hono".
+  - generator?: The identifier of the software that generated the page, if true
+    generator name will "Hono".
   - keywords?: The array of keywords.
   - favicon?:
   - ogTitle?: The title of the object as it should appear within the graph.
   - ogType?: The type of the object.
   - ogImage?: An image URL which should represent the object within the graph.
-  - ogUrl?: The canonical URL of your object that will be used as its permanent ID in the graph.
+  - ogUrl?: The canonical URL of your object that will be used as its permanent
+    ID in the graph.
 - socialLinks:
   - facebook?:
   - github?:
@@ -70,11 +75,13 @@ export default app;
   - linkedin?:
   - mastodon?:
 
-**_See all configuration options at https://jsr.io/@ptm/hono-blog/doc/~/HonoBlogOptions_**
+**_See all configuration options at
+https://jsr.io/@ptm/hono-blog/doc/~/HonoBlogOptions_**
 
 ### 5. Markdown
 
-Hono blog used `mm-mark` that is base on [Showdown.js](https://github.com/showdownjs/showdown) for Deno runtime.
+Hono blog used `mm-mark` that is base on
+[Showdown.js](https://github.com/showdownjs/showdown) for Deno runtime.
 
 Demo :: http://demo.showdownjs.com/
 
@@ -167,6 +174,7 @@ tags:
 ogurl:
 ogtype:
 ogtitle:
+cover_photo:
 ---
 ```
 
@@ -176,14 +184,18 @@ Easy deploy on [Deno Deploy](https://deno.com/deploy)
 
 ## Acknowledgement
 
-1. [Deno](https://deno.com/) - Open-source JavaScript runtime for the modern web.
+1. [Deno](https://deno.com/) - Open-source JavaScript runtime for the modern
+   web.
 
 2. [Hono](https://hono.dev/) - Ultrafast web framework for the Edges.
 
-3. [Showdown](https://github.com/showdownjs/showdown) - A Markdown to HTML bidirectional converter written in Javascript!
+3. [Showdown](https://github.com/showdownjs/showdown) - A Markdown to HTML
+   bidirectional converter written in Javascript!
 
-4. [js-yaml](https://github.com/nodeca/js-yaml) - YAML 1.2 parser / writer for JavaScript.
+4. [js-yaml](https://github.com/nodeca/js-yaml) - YAML 1.2 parser / writer for
+   JavaScript.
 
-5. [glob](https://github.com/isaacs/node-glob#readme) - The most correct and second fastest glob implementation in JavaScript.
+5. [glob](https://github.com/isaacs/node-glob#readme) - The most correct and
+   second fastest glob implementation in JavaScript.
 
 6. [Classless.css](https://classless.de/) - Less classes. Less overhead.
