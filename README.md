@@ -9,7 +9,13 @@ Simple blog template with Hono Js and Deno.
 ### 2. Getting Started
 
 ```bash
-deno run -A https://deno.land/x/honoblog/init.ts  "./directory/for/blog/"
+deno run -r --allow-read --allow-write https://deno.land/x/honoblog/init.ts directory_for_blog
+```
+
+**Example**
+
+```bash
+deno run -r --allow-read --allow-write https://deno.land/x/honoblog/init.ts my_blog
 ```
 
 ### 3. `deno.json`
