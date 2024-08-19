@@ -38,7 +38,13 @@ export interface HonoBlogOptions {
      * The identifier of the software that generated the page, if true generator name will `Hono`
      */
     generator?: boolean;
+    /**
+     * Keywords array
+     */
     keywords?: string[];
+    /**
+     * Favicon
+     */
     favicon?: string;
     /**
      *  The title of the object as it should appear within the graph
@@ -61,17 +67,46 @@ export interface HonoBlogOptions {
    * Social profile links
    */
   socialLink?: {
+    /**
+     * Facebook link
+     */
     facebook?: string;
+    /**
+     * Github link
+     */
     github?: string;
+    /**
+     * Twitter - X link
+     */
     twitter?: string;
+    /**
+     * Discord link
+     */
     discord?: string;
+    /**
+     * Linkedin link
+     */
     linkedin?: string;
+    /**
+     * Mastodon link
+     */
     mastodon?: string;
   };
+  /**
+   * Dev Server Options
+   */
   server?: {
-    hostname?: string;
+    /**
+     * Server port - default 3838
+     */
     port?: number;
+    /**
+     * Open to browser - default false
+     */
     open?: boolean;
+    /**
+     * Watch mode - if true watch on baseDir - default false
+     */
     watch?: boolean;
   };
 }

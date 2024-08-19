@@ -1,6 +1,5 @@
 import type { HonoBlogOptions } from "./lib/configuration.ts";
 import { honoblog } from "./components/mod.tsx";
-import { getAllFiles } from "./lib/routes.ts";
 import {
   type BlankEnv,
   type BlankSchema,
@@ -10,7 +9,7 @@ import {
   npmOpen,
   path,
 } from "./lib/deps.ts";
-
+import { generateAllJson, generateWhenChange } from "./lib/createjson.ts";
 type Init = {
   start: () => void;
   stop: () => void;
@@ -26,7 +25,7 @@ class HonoBlog {
   private server?: Deno.HttpServer;
   constructor(options?: HonoBlogOptions) {
     this.opts = options;
-    this._host = this.opts?.server?.hostname ?? "localhost";
+    this._host = "localhost";
     this._port = this.opts?.server?.port ?? 3838;
     this.open = this.opts?.server?.open ?? false;
     this.url = `http://${this._host}:${this._port}`;

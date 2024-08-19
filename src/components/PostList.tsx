@@ -1,3 +1,4 @@
+// ! checked 20-8
 import { type FC, html, memo } from "../lib/deps.ts";
 import { Layout } from "./Layout.tsx";
 import linkArray from "../lib/linkarray.ts";

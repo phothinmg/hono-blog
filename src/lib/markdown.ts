@@ -1,22 +1,8 @@
 import { Mmmark } from "./deps.ts";
 import { readFile } from "./utils.ts";
-/**
- * Yaml frontmatter of markdown document.
- */
-export interface AttrsPost {
-  type: "page" | "post" | "index";
-  title: string;
-  date?: Date | string;
-  author?: string;
-  description?: string;
-  tags?: string[];
-  ogimage?: string;
-  ogurl?: string;
-  ogtype?: string;
-  ogtitle?: string;
-  cover_photo?: string;
-}
-export interface MarkOpts extends AttrsPost {
+import type { MarkOptions } from "./routes.ts";
+
+export interface MarkOpts extends Partial<MarkOptions["attrs"]> {
   html: string;
 }
 
@@ -26,17 +12,21 @@ export interface MarkOpts extends AttrsPost {
  * @param filePath - The path to the markdown file to be processed.
  * @returns An object with attributes like type, title, date, author, description, tags, ogimage, ogurl, ogtype, ogtitle, html, and cover_photo.
  */
-export function mark(filePath: string): MarkOpts {
-  const tx: string = readFile(filePath);
-  const c = new Mmmark.ConvertMd<AttrsPost>(tx, {
+export function mark(filePath?: string): MarkOpts {
+  const fpath: string = filePath === undefined ? "" : filePath;
+  const tx: string = readFile(fpath);
+  const json: MarkOptions = JSON.parse(tx);
+  const html: string = new Mmmark.ConvertMd(json.body, {
     extensions: ["showdownMathjax"],
-  });
-  const data: AttrsPost = c.data;
-  const html: string = c.html;
+  }).html;
+  const data: MarkOptions["attrs"] = json.attrs;
+  const publishDate = data.date === undefined
+    ? new Date()
+    : new Date(data.date);
   return {
     type: data.type,
-    title: data.title,
-    date: (data.date || new Date()).toLocaleString("en-US", {
+    title: data.title ?? "",
+    date: publishDate.toLocaleString("en-US", {
       weekday: "short",
       year: "numeric",
       month: "short",
@@ -52,7 +42,4 @@ export function mark(filePath: string): MarkOpts {
     html: html,
     cover_photo: data.cover_photo ?? "",
   };
-}
-
-export function markjson(filePath: string) {
 }

@@ -1,6 +1,6 @@
 import { type FC, html, memo, type PropsWithChildren } from "../lib/deps.ts";
 import type { HonoBlogOptions } from "../lib/configuration.ts";
-import { siteData } from "../lib/config.ts";
+
 export interface LayoutProps extends PropsWithChildren {
   options?: HonoBlogOptions;
   seoTitle?: string;
@@ -24,17 +24,20 @@ export const Layout: FC<LayoutProps> = memo(
     ogUrl,
     children,
   }) => {
-    const data = siteData(options);
+    // const data = siteData(options);
     const title = seoTitle
-      ? data.siteName + " " + "|" + " " + seoTitle
-      : data.siteName;
-    const gen = data.generator ? "Hono" : "";
-    const des = pageDes ? pageDes : data.description;
-    const aut = pageAuthor ? pageAuthor : data.author;
-    const ogtit = ogTitle ?? data.ogtitle;
-    const ogtyp = ogType ?? data.ogtype;
-    const ogimg = ogImage ?? data.ogimage;
-    const ogur = ogUrl ?? data.ogurl;
+      ? options?.siteName + " " + "|" + " " + seoTitle
+      : options?.siteName;
+    const gen = options?.meta?.generator ? "Hono" : "";
+    const des = pageDes ? pageDes : options?.meta?.description;
+    const aut = pageAuthor ? pageAuthor : options?.meta?.author;
+    const ogtit = ogTitle ?? options?.meta?.ogTitle;
+    const ogtyp = ogType ?? options?.meta?.ogType;
+    const ogimg = ogImage ?? options?.meta?.ogImage;
+    const ogur = ogUrl ?? options?.meta?.ogUrl;
+    const kw = options?.meta?.keywords === undefined
+      ? []
+      : options?.meta.keywords;
     return (
       <html prefix="og: https://ogp.me/ns#" lang="en">
         <head>
@@ -47,12 +50,19 @@ export const Layout: FC<LayoutProps> = memo(
           <meta name="description" content={des} />
           <meta name="author" content={aut} />
           <meta name="generator" content={gen} />
-          <meta name="keywords" content={data.keywords.join(",")} />
+          <meta
+            name="keywords"
+            content={kw.join(",")}
+          />
           <meta property="og:title" content={ogtit} />
           <meta property="og:type" content={ogtyp} />
           <meta property="og:image" content={ogimg} />
           <meta property="og:url" content={ogur} />
-          <link rel="shortcut icon" href={data.favicon} type="image/x-icon" />
+          <link
+            rel="shortcut icon"
+            href={options?.meta?.favicon}
+            type="image/x-icon"
+          />
           <script
             src="https://kit.fontawesome.com/50c925d5df.js"
             crossorigin="anonymous"

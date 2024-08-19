@@ -1,9 +1,33 @@
-import { mark } from "./markdown.ts";
-import { globSync, path } from "./deps.ts";
-import { getFilename } from "./utils.ts";
+import { extractYaml, globSync, path } from "./deps.ts";
+import { getFilename, readFile } from "./utils.ts";
 import type { HonoBlogOptions } from "./configuration.ts";
 
 import { siteData } from "./config.ts";
+
+/**
+ * **Dependent List**
+ *  - src/lib/markdown.ts
+ */
+/**
+ * Frontmatter Options - @std
+ */
+export type MarkOptions = {
+  frontmatter: string;
+  body: string;
+  attrs: {
+    type: "page" | "post" | "index";
+    title: string;
+    description?: string;
+    date?: Date | string;
+    author?: string;
+    tags?: string[];
+    ogimage?: string;
+    ogurl?: string;
+    ogtype?: string;
+    ogtitle?: string;
+    cover_photo?: string;
+  };
+};
 
 export interface Route {
   path: string;
@@ -27,7 +51,7 @@ export type PostRoutes = Array<PostRoute>;
  * @returns An object containing index routes, post routes, and page routes.
  */
 export const getMdFiles = (
-  options?: HonoBlogOptions
+  options?: HonoBlogOptions,
 ): {
   indexroute: Routes;
   postsroute: PostRoutes;
@@ -46,7 +70,9 @@ export const getMdFiles = (
 
   cssf.forEach((filePath) => {
     try {
-      const { title, type } = mark(filePath);
+      const data = extractYaml<MarkOptions["attrs"]>(readFile(filePath)).attrs;
+      const title = data.title;
+      const type = data.type;
       const fn = title.toLowerCase().split(" ").join("-");
       const route = {
         path: `/${type}s/${fn}`,
@@ -91,7 +117,7 @@ export const getMdFiles = (
  * @returns An object containing routes for image index, posts, and pages.
  */
 export const getImgFiles = (
-  options?: HonoBlogOptions
+  options?: HonoBlogOptions,
 ): {
   imgIndexRoute: Routes;
   imgPostRoute: Routes;
@@ -103,7 +129,7 @@ export const getImgFiles = (
     `${baseDir}/**/*.{png,jpg,svg,gif,jpeg,webp,ico}`,
     {
       ignore: ["node_modules", ...ignore],
-    }
+    },
   );
 
   const imgIndexRoute: Routes = [];

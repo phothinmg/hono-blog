@@ -30,6 +30,7 @@ export const PostView: FC<{ filePath: string; options?: HonoBlogOptions }> =
     const inner2 = { _html: post_head };
     return (
       <Layout
+        options={options}
         seoTitle={opts.title}
         pageDes={opts.description}
         pageAuthor={opts.author}
