@@ -4,10 +4,12 @@
   "version": "0.0.18",
   "exports": "./src/mod.ts",
   "tasks": {
-    "start": "deno serve -A a.ts"
+    "start": "deno serve -A a.ts",
+    "update": "deno run -A --quiet 'https://deno.land/x/nudd@v0.2.8/cli.ts' update src/lib/deps.ts deno.json"
   },
   "compilerOptions": {
+    "lib": ["deno.ns", "dom", "dom.iterable", "dom.asynciterable"],
     "jsx": "precompile",
-    "jsxImportSource": "jsr:@hono/hono@^4.5.3/jsx"
+    "jsxImportSource": "jsr:@hono/hono@^4.5.4/jsx"
   }
 }

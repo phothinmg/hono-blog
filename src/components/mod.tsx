@@ -1,4 +1,12 @@
-import { compress, cors, csrf, Hono, serveStatic } from "../lib/deps.ts";
+import {
+  type BlankEnv,
+  type BlankSchema,
+  compress,
+  cors,
+  csrf,
+  Hono,
+  serveStatic,
+} from "../lib/deps.ts";
 import { Home } from "./Home.tsx";
 import { PostsList } from "./PostList.tsx";
 import { PostView } from "./PostBody.tsx";
@@ -11,7 +19,9 @@ import type { HonoBlogOptions } from "../lib/configuration.ts";
  * @param options - Optional blog configuration options.
  * @returns The configured Hono application for the blog.
  */
-export const honoblog = (options?: HonoBlogOptions): Hono => {
+export const honoblog = (
+  options?: HonoBlogOptions,
+): Hono<BlankEnv, BlankSchema, "/"> => {
   const app = new Hono();
   const pa = getMdFiles(options).postsroute;
   const pages = getMdFiles(options).pagesroute;

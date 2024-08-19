@@ -1,4 +1,4 @@
-import { type FC, memo, type PropsWithChildren, html } from "../lib/deps.ts";
+import { type FC, html, memo, type PropsWithChildren } from "../lib/deps.ts";
 import type { HonoBlogOptions } from "../lib/configuration.ts";
 import { siteData } from "../lib/config.ts";
 export interface LayoutProps extends PropsWithChildren {
@@ -56,7 +56,8 @@ export const Layout: FC<LayoutProps> = memo(
           <script
             src="https://kit.fontawesome.com/50c925d5df.js"
             crossorigin="anonymous"
-          ></script>
+          >
+          </script>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
@@ -75,8 +76,10 @@ export const Layout: FC<LayoutProps> = memo(
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/gh/phothinmg/master-repo@main/honoblog/index.min.css"
           />
-          <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
-          <script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js">
+          </script>
+          <script src="https://unpkg.com/highlightjs-copy/dist/highlightjs-copy.min.js">
+          </script>
           <title>{title}</title>
         </head>
         <body>
@@ -88,5 +91,5 @@ export const Layout: FC<LayoutProps> = memo(
         </body>
       </html>
     );
-  }
+  },
 );

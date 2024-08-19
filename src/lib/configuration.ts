@@ -19,7 +19,7 @@ export interface HonoBlogOptions {
    */
   baseDir?: string;
   /**
-   * Files or Directories want to ignore 
+   * Files or Directories want to ignore
    */
   ignore?: string[];
   /**
@@ -67,5 +67,11 @@ export interface HonoBlogOptions {
     discord?: string;
     linkedin?: string;
     mastodon?: string;
+  };
+  server?: {
+    hostname?: string;
+    port?: number;
+    open?: boolean;
+    watch?: boolean;
   };
 }

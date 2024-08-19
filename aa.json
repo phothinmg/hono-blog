@@ -1,0 +1,8 @@
+{
+  "frontMatter": "type: \"index\"\ntitle: \"Home\"",
+  "body": "Hello\n\n### 1. About\n\nSimple blog template with Hono Js and Deno.\n\n### 2. Getting Started\n\n```bash\ngit clone https://github.com/phothinmg/hono-blog-template.git\n```\n\n### 3. `deno.json`\n\n```json\n{\n  \"$schema\": \"./deno.schema.json\",\n  \"version\": \"1.0.0\",\n  \"tasks\": {\n    \"start\": \"deno serve -A mod.ts\"\n  },\n  \"imports\": {\n    \"@hono/hono\": \"jsr:@hono/hono@^4.5.4\",\n    \"@ptm/hono-blog\": \"jsr:@ptm/hono-blog@^0.0.4\"\n  },\n  \"compilerOptions\": {\n    \"jsx\": \"precompile\",\n    \"jsxImportSource\": \"jsr:@hono/hono@^4.5.4/jsx\"\n  }\n}\n```\n\nCheck and update version of @hono/hono at https://jsr.io/@hono/hono and\n@ptm/hono-blog at https://jsr.io/@ptm/hono-blog\n",
+  "attrs": {
+    "type": "index",
+    "title": "Home"
+  }
+}

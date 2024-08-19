@@ -17,6 +17,8 @@ export interface LinkArrayType {
  *
  * @param options - Optional HonoBlogOptions for customization.
  * @returns An array of LinkArrayType objects containing path, title, date, reading time, tags, description, and file name.
+ *
+ * export to src/components/PostList.tsx
  */
 export default function linkArray(options?: HonoBlogOptions) {
   const postRoutes = getMdFiles(options).postsroute;

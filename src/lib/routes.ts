@@ -27,7 +27,7 @@ export type PostRoutes = Array<PostRoute>;
  * @returns An object containing index routes, post routes, and page routes.
  */
 export const getMdFiles = (
-  options?: HonoBlogOptions,
+  options?: HonoBlogOptions
 ): {
   indexroute: Routes;
   postsroute: PostRoutes;
@@ -91,7 +91,7 @@ export const getMdFiles = (
  * @returns An object containing routes for image index, posts, and pages.
  */
 export const getImgFiles = (
-  options?: HonoBlogOptions,
+  options?: HonoBlogOptions
 ): {
   imgIndexRoute: Routes;
   imgPostRoute: Routes;
@@ -103,7 +103,7 @@ export const getImgFiles = (
     `${baseDir}/**/*.{png,jpg,svg,gif,jpeg,webp,ico}`,
     {
       ignore: ["node_modules", ...ignore],
-    },
+    }
   );
 
   const imgIndexRoute: Routes = [];
@@ -135,4 +135,43 @@ export const getImgFiles = (
     imgPostRoute,
     imgPageRoute,
   };
+};
+
+export const mdFiles = (options: HonoBlogOptions) => {
+  const baseDir = siteData(options).baseDir;
+  const ignore = siteData(options).ignore;
+  const cwd = Deno.cwd();
+  const appDir = path.join(cwd, baseDir);
+  const mds: string[] = globSync(`${appDir}/**/*.md`, {
+    ignore: ["node_modules", ...ignore],
+  });
+  return mds;
+};
+export type GetAllFiles = Array<Route | PageRoute | PostRoute>;
+export const getAllFiles = (options?: HonoBlogOptions): GetAllFiles => {
+  const cwd = Deno.cwd();
+  const mds = getMdFiles(options);
+  const imgs = getImgFiles(options);
+  const fa = [
+    ...imgs.imgIndexRoute,
+    ...imgs.imgPageRoute,
+    ...imgs.imgPostRoute,
+  ];
+  const imges: Routes = [];
+
+  fa.forEach((i: Route) => {
+    const aa: Route = {
+      path: i.path,
+      fileLoc: path.join(cwd, i.fileLoc),
+    };
+    imges.push(aa);
+  });
+
+  const files: GetAllFiles = [
+    ...mds.indexroute,
+    ...mds.pagesroute,
+    ...mds.postsroute,
+    ...imges,
+  ];
+  return files;
 };

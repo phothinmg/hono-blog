@@ -1,16 +1,17 @@
 import type { HonoBlogOptions } from "./lib/configuration.ts";
 import { honoblog } from "./components/mod.tsx";
-import type { Hono } from "./lib/deps.ts";
+import type { BlankEnv, BlankSchema, Hono } from "./lib/deps.ts";
+import { fsWatcher } from "./lib/watcher.ts";
 /**
  * **Creates a blog application with specified options.**
- * 
+ *
  * @param options - Optional blog configuration options.
  * @returns The configured Hono application for the blog.
- * 
- * 
+ *
+ *
  * @example
- * 
- * 
+ *
+ *
  * ```ts
  * import { blog } from "@ptm/hono-blog";
 
@@ -36,10 +37,13 @@ import type { Hono } from "./lib/deps.ts";
 
     export default app;
 
- * 
+ *
  * ```
  */
-export const blog = (options: HonoBlogOptions): Hono => {
+export const blog = (
+  options: HonoBlogOptions,
+): Hono<BlankEnv, BlankSchema, "/"> => {
+  fsWatcher(options);
   return honoblog(options);
 };
 

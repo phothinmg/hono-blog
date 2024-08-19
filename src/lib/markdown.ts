@@ -53,3 +53,6 @@ export function mark(filePath: string): MarkOpts {
     cover_photo: data.cover_photo ?? "",
   };
 }
+
+export function markjson(filePath: string) {
+}

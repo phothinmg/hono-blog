@@ -25,7 +25,7 @@ const CONFIG_FILE = "mod.ts";
 const CONFIG_CONTENT = `
 import { blog } from "hono-blog";
 
-const app = blog({
+blog({
  siteName: "My Blog",
  baseDir: "app",
  meta:{
@@ -40,8 +40,6 @@ const app = blog({
 });
 
 // See all configuration options at https://jsr.io/@ptm/hono-blog/doc/~/HonoBlogOptions
-
-export default app;
 
 `;
 
